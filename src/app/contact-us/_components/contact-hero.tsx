@@ -7,11 +7,14 @@ import { useRef } from "react";
 import { FadeIn } from "@/components/motion/fade-in";
 
 /**
- * Full-width Contact hero. Uses a bespoke abstract composition distinct
- * from both the Home hero (skyline photo) and the Blog hero (data-chart
- * motif) — a communication/connection-themed graphic (signal rings, a
- * location pin, chat bubbles) built the same honest way: a hand-authored
- * SVG rasterized to a real file, not a fabricated stock photo.
+ * Full-width Contact hero. Background is a literal "how to reach us"
+ * graphic — a simplified Singapore map with a location pin at the
+ * confirmed office address, plus flat envelope/phone/chat glyphs —
+ * rather than the earlier abstract glowing-rings/data-ping composition,
+ * which read as decorative "animated tech" rather than anything
+ * connected to actually contacting Envis8ge. Same honest construction as
+ * the other hero backgrounds: a hand-authored SVG rasterized to a real
+ * file, not a fabricated stock photo.
  */
 export function ContactHero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -28,7 +31,7 @@ export function ContactHero() {
     >
       <motion.div style={{ y }} className="absolute inset-0">
         <Image
-          src="/images/backgrounds/contact-hero-bg.jpg"
+          src="/images/backgrounds/contact-hero-bg-v2.jpg"
           alt=""
           fill
           priority

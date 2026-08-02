@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -100,14 +101,34 @@ export function PortfolioPreview() {
 
         <div className="tablet:grid-cols-8 mt-6 grid grid-cols-4 items-center gap-6">
           {Array.from({ length: portfolioPreview.clientLogoCount }, (_, i) => (
-            <Image
+            <motion.div
               key={i}
-              src={`/images/clients/client-${String(i + 1).padStart(2, "0")}.webp`}
-              alt=""
-              width={196}
-              height={80}
-              className="h-auto w-full opacity-70 grayscale transition-opacity duration-150 hover:opacity-100"
-            />
+              animate={
+                reducedMotion
+                  ? undefined
+                  : { scale: [1, 1.18, 1], opacity: [0.7, 1, 0.7] }
+              }
+              transition={
+                reducedMotion
+                  ? undefined
+                  : {
+                      duration: 0.9,
+                      ease: "easeInOut",
+                      delay: i * 0.15,
+                      repeat: Infinity,
+                      repeatDelay:
+                        portfolioPreview.clientLogoCount * 0.15 - 0.9,
+                    }
+              }
+            >
+              <Image
+                src={`/images/clients/client-${String(i + 1).padStart(2, "0")}.webp`}
+                alt=""
+                width={196}
+                height={80}
+                className="h-auto w-full grayscale"
+              />
+            </motion.div>
           ))}
         </div>
 

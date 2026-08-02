@@ -12,6 +12,11 @@ import { asSeenOn } from "./data";
  * composite logo image (Mediacorp, DAN, DesignRush) from the live site,
  * with the same subtle halftone-dot decoration used there.
  *
+ * Heading verified directly against the live DOM: it's "As Seen On" as a
+ * normal-case H1 with only the word "Seen" bolded in the brand primary
+ * color (`<h1>As <strong>Seen</strong> On</h1>`) — not the small-caps
+ * uppercase gray label this section used before.
+ *
  * `container={false}` + a manual `Container` keeps the background
  * `Image` a direct child of the `relative` Section root, as `next/image`
  * `fill` requires — nesting it inside Section's auto-Container (which is
@@ -32,8 +37,8 @@ export function AsSeenOn() {
       />
       <Container className="relative">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-foreground text-sm font-semibold tracking-wide uppercase">
-            {asSeenOn.heading}
+          <h2 className="font-heading text-foreground tablet:text-3xl text-2xl font-bold">
+            As <strong className="text-primary">Seen</strong> On
           </h2>
           <Image
             src={asSeenOn.image}

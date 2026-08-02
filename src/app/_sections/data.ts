@@ -18,7 +18,6 @@ export const hero = {
  * Network), DesignRush.
  */
 export const asSeenOn = {
-  heading: "As Seen On",
   image: "/images/as-seen-on/as-seen-on.png",
 };
 
