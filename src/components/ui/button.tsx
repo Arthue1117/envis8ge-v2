@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
  * its shape/color without updating the locked design system first.
  */
 const buttonVariants = cva(
-  "font-button rounded-pill inline-flex shrink-0 items-center justify-center gap-2 capitalize whitespace-nowrap transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+  "font-button rounded-pill inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden capitalize whitespace-nowrap transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {

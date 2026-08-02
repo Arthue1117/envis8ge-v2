@@ -21,7 +21,7 @@ export function Footer() {
     <footer className="bg-secondary text-secondary-foreground">
       <Container className="tablet:grid-cols-3 grid gap-10 py-16">
         <div className="flex flex-col gap-4">
-          <Logo className="text-secondary-foreground" />
+          <Logo variant="light" />
           <p className="text-sm text-neutral-400">
             Boutique social media and digital marketing agency in Singapore.
           </p>

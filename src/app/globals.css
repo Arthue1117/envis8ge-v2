@@ -122,6 +122,17 @@
   --radius-md-value: 0.75rem; /* 12px */
   --radius-lg-value: 1rem; /* 16px */
   --radius-pill-value: 50px; /* Confirmed — matches the live CTA button */
+
+  /*
+   * Gradient backgrounds — discovered during the Phase 3 Visual Fidelity
+   * Pass via `background-image`, not `background-color` (missed in the
+   * original Phase 1 color extraction, which only checked solid colors).
+   * NOT yet reflected in the locked docs/03-design-system.md Section 1 —
+   * flagged for a documentation update, not silently added there.
+   * Confirmed exact values from the live site's computed styles.
+   */
+  --gradient-accent: linear-gradient(124deg, #bdf3d3 0%, #20c1fa 40%);
+  --gradient-button: linear-gradient(90deg, #bdf3d3 0%, #20c1fa 30%);
 }
 
 @layer base {
@@ -134,4 +145,44 @@
   html {
     @apply font-sans;
   }
+}
+
+/*
+ * Portfolio Preview marquee — CSS keyframes (not Framer Motion) per
+ * request, since a continuous linear loop is lighter done this way.
+ * The track is duplicated once in the markup and translated by exactly
+ * -50% so the loop is seamless with no visible restart jump.
+ */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.marquee-fade {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
 }

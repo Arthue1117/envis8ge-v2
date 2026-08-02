@@ -27,7 +27,7 @@ export function Header() {
         scrolled && "shadow-sm"
       )}
     >
-      <Container className="flex h-20 items-center justify-between">
+      <Container className="flex h-14 items-center justify-between">
         <Logo />
 
         <nav aria-label="Primary" className="desktop:block hidden">

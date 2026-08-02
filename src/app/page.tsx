@@ -1,15 +1,52 @@
+import type { Metadata } from "next";
+
+import { siteConfig } from "@/config/site";
+
+import { AsSeenOn } from "./_sections/as-seen-on";
+import { Cta } from "./_sections/cta";
+import { Hero } from "./_sections/hero";
+import { PortfolioPreview } from "./_sections/portfolio-preview";
+import { Process } from "./_sections/process";
+import { Services } from "./_sections/services";
+import { Testimonials } from "./_sections/testimonials";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 /**
- * Placeholder root route — required for the app to build/run in Phase 1.
- * This is NOT the Home page. The real Home page (hero, services, 8-step
- * process, testimonials, latest articles, CTA) is built in Phase 3 per
- * docs/04-sitemap.md.
+ * Organization structured data, built entirely from confirmed contact
+ * details (docs/01-project-brief.md Section 1) — no invented fields.
  */
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.legalName,
+  url: siteConfig.url,
+  description: siteConfig.description,
+  telephone: siteConfig.contact.phone,
+  email: siteConfig.contact.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: siteConfig.contact.address,
+    addressCountry: "SG",
+  },
+};
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center p-8">
-      <p className="font-heading text-muted-foreground text-lg">
-        Envis8ge — project foundation initialized. Home page pending Phase 3.
-      </p>
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <Hero />
+      <AsSeenOn />
+      <Services />
+      <PortfolioPreview />
+      <Process />
+      <Testimonials />
+      <Cta />
+    </>
   );
 }
