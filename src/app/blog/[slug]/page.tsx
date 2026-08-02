@@ -15,7 +15,7 @@ import {
 } from "../_components/article-nav-placeholders";
 import { AuthorBio } from "../_components/author-bio";
 import { KeyTakeaways, PullQuote } from "../_components/content-blocks";
-import { FaqAccordion } from "../_components/faq-accordion";
+import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { NewsletterSignup } from "../_components/newsletter-signup";
 import { SocialShare } from "../_components/social-share";
 import { TableOfContents } from "../_components/table-of-contents";

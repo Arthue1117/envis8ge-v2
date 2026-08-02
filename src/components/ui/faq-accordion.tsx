@@ -7,13 +7,18 @@ import { useState } from "react";
 import { duration, easing } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-import type { FaqItem } from "../_data/types";
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
 
 /**
- * Blog Plan Section 3.6. Every question converted into an individual
- * accordion item; content preserved exactly as provided in the locked
- * article. Height/opacity transition per Design System Section 20,
- * respects reduced motion globally via root MotionConfig.
+ * Generic accordion, promoted from the Blog's article template
+ * (docs/06-blog-plan.md Section 3.6) once the Contact page needed the
+ * same pattern — not blog-specific, hence living in `components/ui/`
+ * per the reuse rule in docs/PROJECT_ARCHITECTURE.md Section 6. Height/
+ * opacity transition per Design System Section 20, respects reduced
+ * motion globally via root MotionConfig.
  */
 export function FaqAccordion({ items }: { items: FaqItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
