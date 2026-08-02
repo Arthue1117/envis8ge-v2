@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * Design tokens below are sourced directly from the locked
+ * docs/03-design-system.md. Do not hand-tune values here without
+ * updating that document first — it is the source of truth.
+ *
+ * This project is light-theme only (Design System Summary, Section 20):
+ * the current Envis8ge identity has no dark variant, so no `.dark`
+ * theme or `dark:` variant is defined.
+ */
+
+@theme inline {
+  /* Design System Section 1 — Color Tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Direct 1:1 mapping to Design System Section 1 token names,
+     for traceability and use outside shadcn's semantic slots. */
+  --color-primary-tint: var(--primary-tint);
+  --color-primary-hover: var(--primary-hover);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+
+  /* Design System Section 2 — Typography Scale */
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-button: var(--font-button);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Design System Section 4 — Border Radius */
+  --radius-sm: var(--radius-sm-value);
+  --radius-md: var(--radius-md-value);
+  --radius-lg: var(--radius-lg-value);
+  --radius-pill: var(--radius-pill-value);
+
+  /* Design System Section 5 — Shadows */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.12);
+
+  /* Design System Section 19 — Responsive Breakpoints
+     (mobile is the unprefixed default: 0–639px) */
+  --breakpoint-tablet: 40rem; /* 640px */
+  --breakpoint-desktop: 64rem; /* 1024px */
+  --breakpoint-wide: 90rem; /* 1440px */
+}
+
+:root {
+  /* Design System Section 1 — exact Confirmed brand hex values */
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+
+  --primary: #02baf9;
+  --primary-foreground: #ffffff;
+  --primary-tint: #9fe7ff;
+  --primary-hover: #00a6e0;
+
+  --secondary: #000000;
+  --secondary-foreground: #ffffff;
+
+  --muted: #fafafa;
+  --muted-foreground: #484848;
+
+  --accent: #9fe7ff;
+  --accent-foreground: #000000;
+
+  --success: #1fa971;
+  --warning: #e0a400;
+  --error: #d64545;
+  --destructive: var(--error);
+
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #02baf9;
+
+  /* Neutral scale, Design System Section 1 */
+  --neutral-100: #fafafa;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #c4c4c4;
+  --neutral-400: #9e9e9e;
+  --neutral-500: #757575;
+  --neutral-600: #484848;
+  --neutral-700: #303030;
+  --neutral-800: #1b1b1b;
+  --neutral-900: #000000;
+
+  /* Border Radius, Design System Section 4 */
+  --radius-sm-value: 0.5rem; /* 8px */
+  --radius-md-value: 0.75rem; /* 12px */
+  --radius-lg-value: 1rem; /* 16px */
+  --radius-pill-value: 50px; /* Confirmed — matches the live CTA button */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}

@@ -1,0 +1,10 @@
+.next
+node_modules
+package-lock.json
+public
+
+# Locked project documentation and content — never auto-format these.
+# See docs/*.md and content/blog/**/* "Locked" status notes. Formatting
+# tools must not run against these paths; edits require explicit request.
+docs
+content

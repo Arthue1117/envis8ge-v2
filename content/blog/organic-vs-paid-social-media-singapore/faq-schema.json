@@ -1,0 +1,46 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much should Singapore brands budget for paid social?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Budget depends on your objective, audience size, and timeline. For a short event campaign, we run Meta ads from S$750 for a 5–10 day window. For ongoing campaigns with lead generation or brand awareness goals, monthly ad spend typically starts at S$1,500–S$3,000, separate from management fees. The more specific your audience and the shorter your timeline, the more budget matters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can organic social media replace paid ads for a Singapore brand?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not if you need reach or results on a timeline. Organic reach on Facebook and Instagram in Singapore is low without an existing large following. Organic content is excellent for retaining and engaging an audience you already have, but it won't generate significant new reach without paid distribution behind it, especially for a new brand or a time-sensitive campaign."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to see results from organic social media?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Meaningful organic results — consistent engagement, follower growth, inbound enquiries — typically take 4–6 months of consistent posting. One client saw 160% fan growth and a 32.4x increase in reach over 7 months of managed organic and paid activity. Organic alone takes longer and performs better once a base audience exists."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it worth running both Facebook and Instagram for a Singapore brand?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most consumer-facing brands, yes. Facebook and Instagram run on the same ad platform (Meta), so managing both doesn't require double the budget — campaigns can serve across both placements. Organic content strategy may differ slightly by platform, but the audience overlap in Singapore is high enough that both channels reinforce each other."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between boosting a post and running a proper paid campaign?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Boosting promotes an existing post with minimal targeting options. A proper campaign is built from scratch in Meta Ads Manager with defined audiences, objectives (link clicks, conversions, reach), creative variants, and budget pacing. Campaigns consistently outperform boosts on cost per result because the targeting is more precise and the structure is built around a specific outcome."
+      }
+    }
+  ]
+}
