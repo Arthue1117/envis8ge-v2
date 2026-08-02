@@ -6,8 +6,8 @@ import { siteConfig } from "@/config/site";
 
 import { contactFaq } from "./_data/form-options";
 import { ContactCta } from "./_components/contact-cta";
-import { ContactForm } from "./_components/contact-form";
 import { ContactHero } from "./_components/contact-hero";
+import { GhlContactForm } from "./_components/ghl-contact-form";
 import { ContactInfoCards } from "./_components/contact-info-cards";
 import { MapPlaceholder } from "./_components/map-placeholder";
 
@@ -102,7 +102,7 @@ export default function ContactPage() {
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-3xl">
-          <ContactForm />
+          <GhlContactForm />
         </div>
       </Section>
 
