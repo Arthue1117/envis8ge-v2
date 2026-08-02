@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 
-import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { FadeIn } from "@/components/motion/fade-in";
 import { siteConfig } from "@/config/site";
 import { calculateReadingTime } from "@/lib/reading-time";
 
 import { articles } from "./_data/articles";
 import { categories } from "./_data/categories";
+import { BlogHero } from "./_components/blog-hero";
 import { BlogListing } from "./_components/blog-listing";
 import { articleWordCount } from "./_lib/article-text";
 
@@ -17,6 +16,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
+// Invisible structured data only — the visible breadcrumb UI was
+// removed per explicit request (the header already provides primary
+// navigation). Kept for SEO rich-snippet eligibility, which doesn't
+// require an on-page breadcrumb trail.
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -42,28 +45,9 @@ export default function BlogIndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <section className="bg-muted tablet:py-20 border-b border-neutral-200 py-16">
-        <div className="tablet:px-6 mx-auto w-full max-w-[1200px] px-4">
-          <Breadcrumbs
-            items={[{ label: "Home", href: "/" }, { label: "Blog" }]}
-          />
-          <FadeIn className="mt-4 max-w-2xl">
-            <h1 className="font-heading text-foreground tablet:text-4xl text-3xl font-bold">
-              Blog
-            </h1>
-            <span className="text-primary mt-2 block text-sm font-semibold tracking-wide uppercase">
-              Insights, Strategies &amp; Marketing Guides
-            </span>
-            <p className="text-muted-foreground mt-3">
-              Actionable articles about Social Media Marketing, Meta Ads,
-              Content Strategy, Website Design and Digital Marketing in
-              Singapore.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      <BlogHero />
 
-      <section className="tablet:py-16 py-12">
+      <section className="tablet:py-20 desktop:py-24 py-16">
         <div className="tablet:px-6 mx-auto w-full max-w-[1200px] px-4">
           <BlogListing
             articles={articles}
