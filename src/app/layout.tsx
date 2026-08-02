@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Lato, Montserrat, Poppins } from "next/font/google";
 
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
+import { ScrollToTop } from "@/components/layout/scroll-to-top";
+import { PageTransition } from "@/components/motion/page-transition";
 import { Providers } from "@/components/providers/providers";
 import { siteConfig } from "@/config/site";
 
@@ -68,7 +72,14 @@ export default function RootLayout({
       className={`${montserrat.variable} ${poppins.variable} ${lato.variable}`}
     >
       <body className="min-h-full antialiased">
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          <PageTransition>
+            <main>{children}</main>
+          </PageTransition>
+          <Footer />
+          <ScrollToTop />
+        </Providers>
       </body>
     </html>
   );
