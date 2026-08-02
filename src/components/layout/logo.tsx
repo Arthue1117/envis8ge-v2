@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
@@ -6,25 +5,20 @@ import { cn } from "@/lib/utils";
 /**
  * Real logo asset (public/images/logo/envis8ge-logo.png), downloaded
  * directly from the live site. The source file's opaque pixels are a
- * very light near-white tone — nearly invisible against a white header,
- * confirmed via computed styles to have no CSS filter applied on the
- * live site either (likely an unintentional export issue on their end,
- * similar to the "2026/2027" copyright bug found in Phase 2).
+ * very light near-white tone — nearly invisible against a white header
+ * with no recoloring (confirmed via the live site's own computed
+ * styles: no CSS filter is applied there either, likely an
+ * unintentional export issue on their end, similar to the "2026/2027"
+ * copyright bug found in Phase 2).
  *
- * To make the real artwork (the "ENVIS8GE" wordmark + "Vision. Concepts.
- * Ideas." tagline) actually visible, a `brightness(0)` filter is applied
- * to render it in solid black on light backgrounds, and
- * `brightness(0) invert(1)` for solid white on the dark footer. This
- * preserves the exact logo shape — it does not redesign it. Flagged as
- * an assumption requiring approval.
+ * Recolored to the confirmed brand primary (`#02BAF9`) per explicit
+ * request, using a CSS mask (not a `filter` chain) so the fill color is
+ * exact rather than an approximation — the PNG's alpha channel becomes
+ * the shape, `background-color` supplies the precise color. This still
+ * renders the real logo artwork ("ENVIS8GE" + "Vision. Concepts.
+ * Ideas."), just recolored — it does not redesign it.
  */
-export function Logo({
-  className,
-  variant = "dark",
-}: {
-  className?: string;
-  variant?: "dark" | "light";
-}) {
+export function Logo({ className }: { className?: string }) {
   return (
     <Link
       href="/"
@@ -34,16 +28,21 @@ export function Logo({
         className
       )}
     >
-      <Image
-        src="/images/logo/envis8ge-logo.png"
-        alt="Envis8ge"
-        width={1796}
-        height={457}
-        priority
-        className={cn(
-          "tablet:h-9 desktop:h-10 h-8 w-auto",
-          variant === "dark" ? "brightness-0" : "brightness-0 invert"
-        )}
+      <span
+        role="img"
+        aria-label="Envis8ge"
+        className="bg-primary tablet:h-9 desktop:h-10 h-8"
+        style={{
+          maskImage: "url(/images/logo/envis8ge-logo.png)",
+          WebkitMaskImage: "url(/images/logo/envis8ge-logo.png)",
+          maskRepeat: "no-repeat",
+          WebkitMaskRepeat: "no-repeat",
+          maskSize: "contain",
+          WebkitMaskSize: "contain",
+          maskPosition: "left center",
+          WebkitMaskPosition: "left center",
+          aspectRatio: "1796 / 457",
+        }}
       />
     </Link>
   );
