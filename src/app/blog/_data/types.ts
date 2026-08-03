@@ -8,6 +8,7 @@
 export type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; id: string; text: string }
+  | { type: "subheading"; text: string }
   | { type: "caseStudyCard"; fields: Record<string, string> }
   | {
       type: "calloutBox";

@@ -37,11 +37,6 @@ export const organicVsPaidArticle: Article = {
     "Facebook Marketing Singapore",
     "Social Media Agency Singapore",
   ],
-  // No real featured image file exists yet — only the approved creative
-  // brief/AI prompt (content/blog/.../featured-image-brief.md). This path
-  // matches the locked metadata but the file is not present; the Hero
-  // component falls back to a brand gradient rather than a broken image
-  // or a fabricated stock photo.
   featuredImage: "/images/blog/organic-vs-paid-social-media-singapore/hero.jpg",
   publishedAt: null,
   lastUpdated: null,
@@ -351,4 +346,293 @@ export const organicVsPaidArticle: Article = {
   },
 };
 
-export const articles = [organicVsPaidArticle];
+/**
+ * Blog Post #2 — transcribed verbatim from the content you supplied
+ * (title, meta description, URL slug, article body, FAQ, verdict, and
+ * CTA line all used as given). `keyTakeaways` and the verdict
+ * `pullQuote` are short editorial distillations of that same supplied
+ * content, the same way Blog Post #1 pairs prose with a takeaways list
+ * — no new facts, figures, or client claims beyond what's in the source
+ * text above.
+ */
+export const socialMediaContentArticle: Article = {
+  slug: "social-media-content-singapore",
+  title: "What Makes Social Media Content Actually Work in Singapore",
+  seoTitle: "What Makes Social Media Content Work in Singapore | Envis8ge",
+  subtitle:
+    "13 years of managing Singapore brand accounts — from malls to fashion to finance — shows what actually gets engagement, and what gets scrolled past.",
+  listingExcerpt:
+    "Not all social media content performs the same. Here's what 13 years of managing Singapore brand accounts — from malls to fashion to finance — actually teaches you.",
+  description:
+    "Not all social media content performs the same. Here's what 13 years of managing Singapore brand accounts — from malls to fashion to finance — actually teaches you.",
+  category: "Social Media Marketing",
+  categorySlug: "social-media-marketing",
+  author: "Envis8ge",
+  authorBio:
+    "Boutique social media and digital marketing agency serving Singapore and APAC brands since 2013. Known for a fuss-free, transparent approach and a holistic, data-driven social media strategy across content, community, and paid media.",
+  keywords: [
+    "Social Media Content Singapore",
+    "Social Media Marketing Singapore",
+    "Content Strategy Singapore",
+    "Social Media Agency Singapore",
+    "Singapore Brand Content",
+  ],
+  featuredImage: "/images/blog/social-media-content-singapore/hero.jpg",
+  publishedAt: null,
+  lastUpdated: null,
+  socialShare: ["LinkedIn", "Facebook", "WhatsApp", "X", "Copy Link"],
+  tableOfContents: [
+    {
+      id: "why-most-singapore-brand-content-gets-ignored",
+      label: "Why Most Singapore Brand Content Gets Ignored",
+    },
+    {
+      id: "does-content-strategy-differ-by-industry-in-singapore",
+      label: "Does Content Strategy Differ by Industry in Singapore?",
+    },
+    {
+      id: "organic-content-vs-ad-creative-are-they-the-same",
+      label: "Organic Content vs Ad Creative: Are They the Same?",
+    },
+    {
+      id: "what-does-consistent-content-actually-require",
+      label: "What Does Consistent Content Actually Require?",
+    },
+    {
+      id: "how-do-you-know-if-your-content-strategy-is-working",
+      label: "How Do You Know If Your Content Strategy Is Working?",
+    },
+    { id: "frequently-asked-questions", label: "Frequently Asked Questions" },
+    { id: "verdict", label: "Verdict" },
+  ],
+  introduction: [
+    "The social media content that gets engagement in Singapore is specific, visually clean, and gives the audience a reason to stop scrolling — usually within the first frame or the first line of copy. After managing accounts for brands including VivoCity, Maybank, Kipling, and e2i since 2013, here's what that looks like in practice.",
+    "This breakdown covers what makes content work by industry, how organic differs from paid creative, what consistent output actually requires, and how to measure whether your content strategy is working.",
+  ],
+  keyTakeaways: [
+    'Content that works in Singapore is written for the audience, not the brand — specific creative beats generic "We\'re excited to announce…" posts every time.',
+    "Content strategy shifts by industry: retail thrives on footfall-driving events, fashion on UGC and lifestyle imagery, finance on credibility and readability, and employment/training on clear, benefit-led CTAs.",
+    "Organic and ad creative aren't interchangeable — organic builds presence and trust over time, while ad creative needs a hook and a single clear CTA to convert.",
+    "Consistent output matters more than any single post: a realistic monthly cadence is 8–12 feed posts, 4–8 Stories/Reels, ongoing community management, and 1–2 paid creatives.",
+    "Engaged users — not likes — is the most useful metric for evaluating whether organic content is actually resonating with a Singapore audience.",
+    "Structured, consistent content production compounds: one Envis8ge travel sector client saw engaged users grow 61.1x in 7 months once content cadence was consistently managed.",
+  ],
+  body: [
+    {
+      type: "heading",
+      id: "why-most-singapore-brand-content-gets-ignored",
+      text: "Why Most Singapore Brand Content Gets Ignored",
+    },
+    {
+      type: "paragraph",
+      text: "The number one reason brand content underperforms isn't the budget or the platform — it's that it was written for the brand, not the audience. Posts that lead with the company name, product features, or internal announcements without connecting to what the audience actually cares about get skipped.",
+    },
+    {
+      type: "paragraph",
+      text: "Singapore audiences on Facebook and Instagram are exposed to hundreds of posts daily. The content that breaks through answers a question they have, shows them something visually compelling, or triggers a reaction (recognition, aspiration, curiosity) in the first second.",
+    },
+    {
+      type: "paragraph",
+      text: "Generic stock photos with \"We're excited to announce…\" copy don't meet that bar. Specific creative — a real customer moment, a seasonal angle that matches what's happening in Singapore right now, a product shown in the context someone actually uses it — does.",
+    },
+
+    {
+      type: "heading",
+      id: "does-content-strategy-differ-by-industry-in-singapore",
+      text: "Does Content Strategy Differ by Industry in Singapore?",
+    },
+    {
+      type: "paragraph",
+      text: "Yes, and significantly. The content that works for a retail mall has almost nothing in common with what works for a financial institution or a fashion brand.",
+    },
+    {
+      type: "subheading",
+      text: "Retail (VivoCity, HarbourFront Centre, Jurong Point)",
+    },
+    {
+      type: "paragraph",
+      text: "Footfall-driving content performs best — events, promotions, experiential campaigns tied to Singapore dates like CNY, Hari Raya, and year-end sales. Visuals need to show the venue at its best. Community management matters because mall audiences comment and share actively.",
+    },
+    { type: "subheading", text: "Fashion (Kipling / VF Brands APAC)" },
+    {
+      type: "paragraph",
+      text: "Product lifestyle imagery tied to Singapore's aesthetic drives engagement. UGC from local creators outperforms brand-produced content for trust signals. Seasonal collections need to be launched with a clear narrative, not just product shots.",
+    },
+    { type: "subheading", text: "Financial (Maybank)" },
+    {
+      type: "paragraph",
+      text: "Credibility and compliance matter more than virality. Content needs to educate and build trust. Tone is more formal but still needs to be readable — long blocks of text with no visual hook don't work even in finance.",
+    },
+    { type: "subheading", text: "Employment and training (e2i)" },
+    {
+      type: "paragraph",
+      text: 'Clear, benefit-led content with strong CTAs. Job fair and programme content needs to communicate the key information (what it is, who it\'s for, how to register) without clutter. For Singaporeans already scrolling past general job ads, specificity — "for mid-career PMETs" or "for residents open to new sectors" — converts better than broad copy.',
+    },
+    {
+      type: "paragraph",
+      text: "The mistake brands make is hiring an agency that takes the same content format across all categories. The visual style, tone, platform weighting, and posting frequency should all shift based on industry and audience.",
+    },
+
+    {
+      type: "heading",
+      id: "organic-content-vs-ad-creative-are-they-the-same",
+      text: "Organic Content vs Ad Creative: Are They the Same?",
+    },
+    {
+      type: "paragraph",
+      text: "No — and conflating them is one of the most common content mistakes Singapore brands make.",
+    },
+    {
+      type: "paragraph",
+      text: "Organic content is designed to maintain presence, build community, and retain an existing audience. It can be slower-burn: a behind-the-scenes Reel, a product spotlight, a community poll. The goal is engagement and trust over time.",
+    },
+    {
+      type: "paragraph",
+      text: "Ad creative is designed to interrupt and convert. It needs a hook in the first frame (for video) or the first visual (for static), a single clear message, and a specific CTA.",
+    },
+    {
+      type: "paragraph",
+      text: "Running organic content as a paid ad almost always underperforms — and running ad-style content as organic content looks out of place on a healthy brand page.",
+    },
+    {
+      type: "caseStudyCard",
+      fields: {
+        Client: "Kipling (VF Brands, Singapore / Philippines / Malaysia)",
+        Approach:
+          "Organic calendar and paid creative brief planned separately by Envis8ge, with a shared brand voice but different formats and objectives.",
+      },
+    },
+
+    {
+      type: "heading",
+      id: "what-does-consistent-content-actually-require",
+      text: "What Does Consistent Content Actually Require?",
+    },
+    {
+      type: "paragraph",
+      text: "More than most brands expect. A realistic monthly output for a Singapore brand with an active page includes:",
+    },
+    {
+      type: "calloutBox",
+      tone: "neutral",
+      title: "Typical monthly content output",
+      items: [
+        "8–12 feed posts (Facebook and Instagram)",
+        "4–8 Stories or Reels depending on the brand",
+        "Community management — comments, DMs, mentions",
+        "1–2 paid creatives if campaigns are running",
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "Behind each piece of content is audience research, copywriting, design or photography sourcing, scheduling, and performance review.",
+    },
+    {
+      type: "paragraph",
+      text: "When one person inside the brand is managing all of this alongside their other responsibilities, something gets cut — usually strategy, quality review, or response time.",
+    },
+    {
+      type: "caseStudyCard",
+      fields: {
+        Client: "A Singapore travel sector client",
+        Result:
+          "Engaged users up 61.1x in 7 months after Envis8ge took over full social media management with a consistent content cadence.",
+      },
+    },
+    {
+      type: "pullQuote",
+      quote:
+        "That's not just a good month — it's what sustained, structured content production looks like at scale.",
+    },
+
+    {
+      type: "heading",
+      id: "how-do-you-know-if-your-content-strategy-is-working",
+      text: "How Do You Know If Your Content Strategy Is Working?",
+    },
+    {
+      type: "comparisonTable",
+      headers: ["Primary Metric", "Secondary Metric"],
+      rows: [
+        {
+          label: "Brand awareness",
+          values: ["Reach", "Impressions"],
+        },
+        {
+          label: "Audience growth",
+          values: ["Net new followers", "Page likes / follows"],
+        },
+        {
+          label: "Engagement",
+          values: ["Engaged users", "Comments + shares"],
+        },
+        {
+          label: "Traffic",
+          values: ["Link clicks", "CTR"],
+        },
+        {
+          label: "Lead generation",
+          values: ["Form fills / registrations", "Cost per lead"],
+        },
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "If you're posting consistently but reach is flat and engagement is below 1% of followers, the content isn't resonating — regardless of how good it looks.",
+    },
+    {
+      type: "paragraph",
+      text: "If you're running paid campaigns but CTR is under 0.5%, the creative or the audience needs to be reviewed.",
+    },
+    {
+      type: "paragraph",
+      text: "The most useful number for evaluating organic content in Singapore is engaged users: the count of unique people who reacted, commented, clicked, or shared. A post with 200 likes but no comments or clicks is lower value than a post with 50 likes, 30 comments, and 80 link clicks.",
+    },
+  ],
+  faq: [
+    {
+      question: "How often should a Singapore brand post on social media?",
+      answer:
+        "For most brands, 3–5 times per week on Facebook and Instagram is enough to maintain visibility without overwhelming followers. Posting more without a quality or strategy increase doesn't improve results — it dilutes them. For brands running active campaigns or managing event calendars, posting frequency may increase temporarily around key dates.",
+    },
+    {
+      question: "Is video content necessary for social media in Singapore?",
+      answer:
+        "Video content (Reels, short-form clips) consistently gets higher reach than static posts on both Facebook and Instagram in Singapore. You don't need high-production video — a well-edited 15–30 second clip shot on a phone can outperform a studio image if the hook is strong. That said, static carousel posts still perform well for educational or product content.",
+    },
+    {
+      question:
+        "What makes UGC (user-generated content) effective for Singapore brands?",
+      answer:
+        "UGC works because it's perceived as more authentic than brand-produced content. For fashion and lifestyle brands like Kipling, UGC from local creators shows the product in real contexts a Singapore audience recognises. The key is curation — not all UGC reflects well on the brand. A clear UGC strategy with creator guidelines and a selection process produces better results than reposting anything with your hashtag.",
+    },
+    {
+      question:
+        "Should Singapore brands be on TikTok in addition to Facebook and Instagram?",
+      answer:
+        "TikTok reaches a younger demographic (predominantly 18–34) and rewards high-frequency, trend-responsive video content. If your audience skews younger, TikTok is worth testing. However, it requires a different content style and production pace than Meta. Most Singapore brands with limited resources are better served doing Facebook and Instagram well before adding TikTok.",
+    },
+    {
+      question:
+        "How long does it take for social media content to build an audience in Singapore?",
+      answer:
+        "Consistent, managed organic content typically shows meaningful audience growth at the 4–6 month mark. One of our clients saw 160% fan growth over 7 months with Envis8ge managing the full content programme. Growth speed depends on starting audience size, content quality, posting frequency, and whether paid distribution is supporting the organic strategy.",
+    },
+  ],
+  verdict: {
+    paragraphs: [
+      "The social media content that works in Singapore is not generic, not one-size-fits-all, and not an afterthought to the paid campaign. It's specific to the audience, matched to the platform, and produced consistently enough to compound.",
+      'Brands that treat content as something to "post and see" tend to stall. Brands that treat it as a structured, strategy-led programme — with organic and paid working together — are the ones whose results look different at month 6 than they did at month 1.',
+    ],
+    pullQuote:
+      "Brands that treat content as a structured, strategy-led programme are the ones whose results look different at month 6 than at month 1.",
+  },
+  cta: {
+    heading: "Ready to get STARTED?",
+    body: "Talk to Envis8ge about a content strategy for your brand — we'll help you figure out what actually works for your industry and audience.",
+    buttonText: "Talk to Envis8ge about a content strategy for your brand →",
+    href: "https://envis8ge.com/contact-us",
+  },
+};
+
+export const articles = [organicVsPaidArticle, socialMediaContentArticle];

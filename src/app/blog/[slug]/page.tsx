@@ -1,4 +1,6 @@
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { siteConfig } from "@/config/site";
@@ -9,10 +11,7 @@ import { articleWordCount } from "../_lib/article-text";
 import { ArticleBody } from "../_components/article-body";
 import { ArticleCta } from "../_components/article-cta";
 import { ArticleHero } from "../_components/article-hero";
-import {
-  ArticleNavPlaceholder,
-  RelatedArticlesPlaceholder,
-} from "../_components/article-nav-placeholders";
+import { ArticleNav, RelatedArticles } from "../_components/article-nav";
 import { AuthorBio } from "../_components/author-bio";
 import { KeyTakeaways, PullQuote } from "../_components/content-blocks";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
@@ -79,6 +78,24 @@ export default async function BlogArticlePage({
 
   const readingMinutes = calculateReadingTime(articleWordCount(article));
   const url = `${siteConfig.url}/blog/${article.slug}`;
+
+  const index = articles.findIndex((a) => a.slug === slug);
+  const previous = index > 0 ? articles[index - 1] : null;
+  const next = index < articles.length - 1 ? articles[index + 1] : null;
+  const related = articles
+    .filter((a) => a.slug !== slug)
+    .filter((a) => a.categorySlug === article.categorySlug)
+    .slice(0, 3);
+  const relatedFallback =
+    related.length > 0
+      ? related
+      : articles.filter((a) => a.slug !== slug).slice(0, 3);
+  const relatedReadingTimes = Object.fromEntries(
+    relatedFallback.map((a) => [
+      a.slug,
+      calculateReadingTime(articleWordCount(a)),
+    ])
+  );
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -167,6 +184,14 @@ export default async function BlogArticlePage({
       <div className="tablet:px-6 tablet:py-14 mx-auto w-full max-w-[1200px] px-4 py-10">
         <div className="desktop:grid-cols-[minmax(0,1fr)_260px] grid grid-cols-1 gap-10">
           <article className="flex flex-col gap-8">
+            <Link
+              href="/blog"
+              className="text-muted-foreground hover:text-primary inline-flex items-center gap-1.5 text-sm transition-colors duration-150"
+            >
+              <ArrowLeft aria-hidden className="size-4" />
+              Back to Blog
+            </Link>
+
             <details className="desktop:hidden rounded-md border border-neutral-200 p-4">
               <summary className="font-heading text-foreground cursor-pointer text-sm font-semibold">
                 On this page
@@ -225,8 +250,11 @@ export default async function BlogArticlePage({
               href={article.cta.href}
             />
 
-            <ArticleNavPlaceholder />
-            <RelatedArticlesPlaceholder />
+            <ArticleNav previous={previous} next={next} />
+            <RelatedArticles
+              articles={relatedFallback}
+              readingTimes={relatedReadingTimes}
+            />
             <AuthorBio author={article.author} bio={article.authorBio} />
             <NewsletterSignup />
 

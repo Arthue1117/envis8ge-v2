@@ -30,6 +30,15 @@ export function ArticleBody({ blocks }: { blocks: ContentBlock[] }) {
                 {block.text}
               </h2>
             );
+          case "subheading":
+            return (
+              <h3
+                key={i}
+                className="font-heading text-foreground text-xl font-semibold"
+              >
+                {block.text}
+              </h3>
+            );
           case "paragraph":
             return (
               <FadeIn key={i}>
