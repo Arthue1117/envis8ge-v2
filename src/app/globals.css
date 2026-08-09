@@ -50,10 +50,15 @@
   --color-neutral-800: var(--neutral-800);
   --color-neutral-900: var(--neutral-900);
 
-  /* Design System Section 2 — Typography Scale */
-  --font-sans: var(--font-body);
-  --font-heading: var(--font-heading);
-  --font-button: var(--font-button);
+  /*
+   * Typography — Montserrat sitewide (superseding Design System Section
+   * 2's earlier three-typeface system). `font-sans`/`font-heading`/
+   * `font-button` all resolve to the same loaded font so every existing
+   * className in the codebase keeps working unchanged.
+   */
+  --font-sans: var(--font-montserrat);
+  --font-heading: var(--font-montserrat);
+  --font-button: var(--font-montserrat);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* Design System Section 4 — Border Radius */

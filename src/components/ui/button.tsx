@@ -6,8 +6,10 @@ import { cn } from "@/lib/utils";
 /**
  * Design System Section 8 — Buttons.
  * Primary variant is the one Confirmed, non-negotiable brand signature:
- * `#02BAF9` background, pill radius, Poppins, capitalize. Do not change
- * its shape/color without updating the locked design system first.
+ * `#02BAF9` background, pill radius, capitalize. Do not change its
+ * shape/color without updating the locked design system first. Font is
+ * `font-button`, which now resolves to the sitewide Montserrat typeface
+ * (see app/layout.tsx) rather than the earlier Poppins.
  */
 const buttonVariants = cva(
   "font-button rounded-pill inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden capitalize whitespace-nowrap transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
