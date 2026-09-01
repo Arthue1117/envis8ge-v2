@@ -18,7 +18,7 @@ function Section({
   children,
   ...props
 }: React.ComponentProps<"section"> & {
-  background?: "default" | "muted";
+  background?: "default" | "muted" | "tint";
   container?: boolean;
   as?: React.ElementType;
 }) {
@@ -26,7 +26,9 @@ function Section({
     <Tag
       className={cn(
         "tablet:py-20 desktop:py-24 py-16",
-        background === "muted" ? "bg-muted" : "bg-background",
+        background === "muted" && "bg-muted",
+        background === "tint" && "bg-tint",
+        background === "default" && "bg-background",
         className
       )}
       {...props}

@@ -23,7 +23,16 @@ export type ContentBlock =
       rows: { label: string; values: string[] }[];
     }
   | { type: "statistics"; items: { figure: string; context: string }[] }
-  | { type: "imagePlaceholder"; caption: string };
+  | { type: "list"; ordered: boolean; items: ListItem[] };
+
+/**
+ * A list entry is either a plain string or, for lists whose items carry
+ * a bold lead-in (e.g. the "5 questions to ask" checklist), a
+ * `{ lead, text }` pair rendered as `<strong>{lead}</strong> {text}`.
+ * Kept as a typed shape rather than parsing `**markdown**` inside item
+ * strings, consistent with the rest of this model.
+ */
+export type ListItem = string | { lead: string; text: string };
 
 export interface FaqItem {
   question: string;
@@ -50,7 +59,16 @@ export interface Article {
   authorBio: string;
   keywords: string[];
   featuredImage: string;
-  publishedAt: string | null;
+  /**
+   * Scheduled publication instant as an ISO 8601 string with the
+   * Singapore offset, e.g. "2026-09-10T09:00:00+08:00". The article is
+   * treated as published — and appears in the /blog listing, sorted
+   * newest-first, eligible to be the Featured card — only once this
+   * instant has passed (see _lib/publish.ts). `null` = an unscheduled
+   * draft that never auto-publishes. The human-readable date shown on
+   * cards and the article page is derived from this value.
+   */
+  publishAt: string | null;
   lastUpdated: string | null;
   socialShare: string[];
   tableOfContents: { id: string; label: string }[];

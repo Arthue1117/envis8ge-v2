@@ -29,7 +29,7 @@ export function Pagination({
         disabled={page === 1}
         onClick={() => onChange(page - 1)}
         aria-label="Previous page"
-        className="text-foreground hover:text-primary rounded-pill inline-flex size-9 items-center justify-center transition-colors duration-150 disabled:pointer-events-none disabled:opacity-40"
+        className="text-foreground hover:text-primary-text rounded-pill inline-flex size-9 items-center justify-center transition-colors duration-150 disabled:pointer-events-none disabled:opacity-40"
       >
         <ChevronLeft aria-hidden className="size-4" />
       </button>
@@ -56,7 +56,7 @@ export function Pagination({
         disabled={page === totalPages}
         onClick={() => onChange(page + 1)}
         aria-label="Next page"
-        className="text-foreground hover:text-primary rounded-pill inline-flex size-9 items-center justify-center transition-colors duration-150 disabled:pointer-events-none disabled:opacity-40"
+        className="text-foreground hover:text-primary-text rounded-pill inline-flex size-9 items-center justify-center transition-colors duration-150 disabled:pointer-events-none disabled:opacity-40"
       >
         <ChevronRight aria-hidden className="size-4" />
       </button>

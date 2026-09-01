@@ -55,7 +55,7 @@ export function TableOfContents({
                 className={cn(
                   "block border-l-2 py-1 pl-4 text-sm transition-colors duration-150",
                   active
-                    ? "border-primary text-primary font-medium"
+                    ? "border-primary text-primary-text font-medium"
                     : "text-muted-foreground hover:text-foreground border-transparent"
                 )}
               >

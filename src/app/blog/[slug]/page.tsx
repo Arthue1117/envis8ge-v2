@@ -8,6 +8,7 @@ import { calculateReadingTime } from "@/lib/reading-time";
 
 import { articles } from "../_data/articles";
 import { articleWordCount } from "../_lib/article-text";
+import { isPublished, publishedArticles } from "../_lib/publish";
 import { ArticleBody } from "../_components/article-body";
 import { ArticleCta } from "../_components/article-cta";
 import { ArticleHero } from "../_components/article-hero";
@@ -19,9 +20,18 @@ import { NewsletterSignup } from "../_components/newsletter-signup";
 import { SocialShare } from "../_components/social-share";
 import { TableOfContents } from "../_components/table-of-contents";
 
-export function generateStaticParams() {
-  return articles.map((article) => ({ slug: article.slug }));
-}
+// Rendered per request so the publish gate (isPublished, which compares
+// publishAt against the current time) is re-checked on every visit: a
+// scheduled article stops 404ing the moment its publishAt passes, and an
+// unpublished one keeps 404ing until then — with no rebuild.
+//
+// Time-based ISR (`export const revalidate`) is deliberately NOT used
+// here: the Cloudflare/OpenNext deployment runs a read-only static-assets
+// incremental cache with no revalidation queue (see open-next.config.ts),
+// so a route with `revalidate` set makes the cache interceptor enqueue a
+// background revalidation that throws ("Dummy queue is not implemented")
+// and returns a 500. Dynamic rendering avoids that path entirely.
+export const dynamic = "force-dynamic";
 
 function getArticle(slug: string) {
   return articles.find((a) => a.slug === slug);
@@ -34,7 +44,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const article = getArticle(slug);
-  if (!article) return {};
+  // No metadata for a missing or not-yet-published article (the page
+  // itself 404s) — keeps unpublished URLs out of canonical/OG output.
+  if (!article || !isPublished(article)) return {};
 
   const url = `${siteConfig.url}/blog/${article.slug}`;
   const ogImage = `${siteConfig.url}${article.featuredImage}`;
@@ -76,20 +88,30 @@ export default async function BlogArticlePage({
   const article = getArticle(slug);
   if (!article) notFound();
 
+  // A scheduled (future-dated) article is not readable before its
+  // publishAt — the /blog card shows it as "Coming Soon" and this route
+  // 404s. Because the route renders per request (see `dynamic` above),
+  // it starts resolving automatically once the date passes.
+  if (!isPublished(article)) notFound();
+
   const readingMinutes = calculateReadingTime(articleWordCount(article));
   const url = `${siteConfig.url}/blog/${article.slug}`;
 
-  const index = articles.findIndex((a) => a.slug === slug);
-  const previous = index > 0 ? articles[index - 1] : null;
-  const next = index < articles.length - 1 ? articles[index + 1] : null;
-  const related = articles
+  // Previous/Next and Related walk the published set (newest -> oldest),
+  // so navigation never points at an article that isn't live yet.
+  const published = publishedArticles(articles);
+  const index = published.findIndex((a) => a.slug === slug);
+  const previous =
+    index >= 0 && index < published.length - 1 ? published[index + 1] : null;
+  const next = index > 0 ? published[index - 1] : null;
+  const related = published
     .filter((a) => a.slug !== slug)
     .filter((a) => a.categorySlug === article.categorySlug)
     .slice(0, 3);
   const relatedFallback =
     related.length > 0
       ? related
-      : articles.filter((a) => a.slug !== slug).slice(0, 3);
+      : published.filter((a) => a.slug !== slug).slice(0, 3);
   const relatedReadingTimes = Object.fromEntries(
     relatedFallback.map((a) => [
       a.slug,
@@ -113,10 +135,12 @@ export default async function BlogArticlePage({
       name: siteConfig.legalName,
       logo: {
         "@type": "ImageObject",
-        url: `${siteConfig.url}/images/logo/envis8ge-logo.png`,
+        url: `${siteConfig.url}/images/logo/envis8ge-logo-new.png`,
       },
     },
-    ...(article.publishedAt ? { datePublished: article.publishedAt } : {}),
+    ...(isPublished(article) && article.publishAt
+      ? { datePublished: article.publishAt }
+      : {}),
     ...(article.lastUpdated ? { dateModified: article.lastUpdated } : {}),
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     articleSection: article.category,
@@ -186,7 +210,7 @@ export default async function BlogArticlePage({
           <article className="flex flex-col gap-8">
             <Link
               href="/blog"
-              className="text-muted-foreground hover:text-primary inline-flex items-center gap-1.5 text-sm transition-colors duration-150"
+              className="text-muted-foreground hover:text-primary-text inline-flex items-center gap-1.5 text-sm transition-colors duration-150"
             >
               <ArrowLeft aria-hidden className="size-4" />
               Back to Blog
@@ -201,7 +225,7 @@ export default async function BlogArticlePage({
                   <li key={item.id}>
                     <a
                       href={`#${item.id}`}
-                      className="text-muted-foreground hover:text-primary text-sm transition-colors duration-150"
+                      className="text-muted-foreground hover:text-primary-text text-sm transition-colors duration-150"
                     >
                       {item.label}
                     </a>

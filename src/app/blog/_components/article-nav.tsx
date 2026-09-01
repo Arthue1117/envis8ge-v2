@@ -30,7 +30,7 @@ export function ArticleNav({
         >
           <ArrowLeft
             aria-hidden
-            className="text-muted-foreground group-hover:text-primary size-4 shrink-0 transition-transform duration-150 group-hover:-translate-x-1"
+            className="text-muted-foreground group-hover:text-primary-text size-4 shrink-0 transition-transform duration-150 group-hover:-translate-x-1"
           />
           <div>
             <span className="text-muted-foreground block text-xs">
@@ -57,7 +57,7 @@ export function ArticleNav({
           </div>
           <ArrowRight
             aria-hidden
-            className="text-muted-foreground group-hover:text-primary size-4 shrink-0 transition-transform duration-150 group-hover:translate-x-1"
+            className="text-muted-foreground group-hover:text-primary-text size-4 shrink-0 transition-transform duration-150 group-hover:translate-x-1"
           />
         </Link>
       )}

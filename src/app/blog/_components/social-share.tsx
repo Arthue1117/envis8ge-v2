@@ -61,7 +61,7 @@ export function SocialShare({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Share on ${link.label}`}
-            className="text-foreground hover:text-primary hover:bg-muted rounded-pill inline-flex size-9 items-center justify-center text-xs font-semibold transition-colors duration-150"
+            className="text-foreground hover:text-primary-text hover:bg-muted rounded-pill inline-flex size-9 items-center justify-center text-xs font-semibold transition-colors duration-150"
           >
             {link.short}
           </a>
@@ -70,7 +70,7 @@ export function SocialShare({
           type="button"
           onClick={copyLink}
           aria-label="Copy link"
-          className="text-foreground hover:text-primary hover:bg-muted rounded-pill inline-flex size-9 items-center justify-center transition-colors duration-150"
+          className="text-foreground hover:text-primary-text hover:bg-muted rounded-pill inline-flex size-9 items-center justify-center transition-colors duration-150"
         >
           <Link2 aria-hidden className="size-4" />
         </button>

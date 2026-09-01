@@ -37,7 +37,7 @@ export function Breadcrumbs({
                   href={item.href}
                   className={cn(
                     "transition-colors duration-150",
-                    dark ? "hover:text-white" : "hover:text-primary"
+                    dark ? "hover:text-white" : "hover:text-primary-text"
                   )}
                 >
                   {item.label}

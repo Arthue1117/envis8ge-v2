@@ -40,8 +40,8 @@ export function Header() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "text-foreground hover:text-primary text-base font-medium transition-colors duration-150",
-                      active && "text-primary"
+                      "text-foreground hover:text-primary-text text-base font-medium transition-colors duration-150",
+                      active && "text-primary-text"
                     )}
                   >
                     {item.label}

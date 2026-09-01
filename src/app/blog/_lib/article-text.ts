@@ -41,7 +41,14 @@ export function articleWordCount(article: Article): string {
           block.items.map((s) => `${s.figure} ${s.context}`).join(" ")
         );
         break;
-      case "imagePlaceholder":
+      case "list":
+        parts.push(
+          block.items
+            .map((item) =>
+              typeof item === "string" ? item : `${item.lead} ${item.text}`
+            )
+            .join(" ")
+        );
         break;
     }
   }

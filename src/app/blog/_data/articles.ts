@@ -38,7 +38,9 @@ export const organicVsPaidArticle: Article = {
     "Social Media Agency Singapore",
   ],
   featuredImage: "/images/blog/organic-vs-paid-social-media-singapore/hero.jpg",
-  publishedAt: null,
+  // Published. The /blog Featured slot is the newest published article,
+  // determined automatically (see _lib/publish.ts) — no manual pin.
+  publishAt: "2026-08-27T09:00:00+08:00",
   lastUpdated: null,
   socialShare: ["LinkedIn", "Facebook", "WhatsApp", "X", "Copy Link"],
   tableOfContents: [
@@ -121,12 +123,6 @@ export const organicVsPaidArticle: Article = {
         "Generate leads or registrations on a fixed timeline",
       ],
     },
-    {
-      type: "imagePlaceholder",
-      caption:
-        "Supporting image for the Organic section — to be supplied, no stock substitute",
-    },
-
     {
       type: "heading",
       id: "what-does-paid-social-media-actually-buy-you",
@@ -378,7 +374,9 @@ export const socialMediaContentArticle: Article = {
     "Singapore Brand Content",
   ],
   featuredImage: "/images/blog/social-media-content-singapore/hero.jpg",
-  publishedAt: null,
+  // Scheduled — Article 2. Hidden from /blog entirely and its article
+  // page 404s until this instant, then publishes automatically.
+  publishAt: "2026-09-03T09:00:00+08:00",
   lastUpdated: null,
   socialShare: ["LinkedIn", "Facebook", "WhatsApp", "X", "Copy Link"],
   tableOfContents: [
@@ -635,4 +633,287 @@ export const socialMediaContentArticle: Article = {
   },
 };
 
-export const articles = [organicVsPaidArticle, socialMediaContentArticle];
+/**
+ * Blog Post #3 — the article body, title tag, meta description, URL
+ * slug, FAQ, and verdict are transcribed verbatim from the copy the
+ * client supplied. `keyTakeaways`, `subtitle`, `listingExcerpt`, the
+ * table of contents, and the verdict `pullQuote` are short editorial
+ * distillations of that same supplied copy (same treatment as Posts #1
+ * and #2) — no new facts, figures, or client claims.
+ *
+ * The "5 questions to ask" render as an ordered list with bold
+ * lead-ins; the proposal red flags and the minimum-expectations
+ * checklist render as unordered lists — all via the template-consistent
+ * `list` ContentBlock.
+ */
+export const howToChooseAgencyArticle: Article = {
+  slug: "how-to-choose-social-media-agency-singapore",
+  title:
+    "How to Choose a Social Media Agency in Singapore: A No-Nonsense Buyer's Guide",
+  seoTitle: "How to Choose a Social Media Agency in Singapore | Envis8ge",
+  subtitle:
+    "The questions to ask, the red flags to watch for, and what good actually looks like — before you sign anything.",
+  listingExcerpt:
+    "Choosing the wrong social media agency in Singapore is expensive. Here are the questions to ask, the red flags to watch for, and what good actually looks like.",
+  description:
+    "Choosing the wrong social media agency in Singapore is expensive. Here are the questions to ask, the red flags to watch for, and what good actually looks like.",
+  category: "Social Media Marketing",
+  categorySlug: "social-media-marketing",
+  author: "Envis8ge",
+  authorBio:
+    "Boutique social media and digital marketing agency serving Singapore and APAC brands since 2013. Known for a fuss-free, transparent approach and a holistic, data-driven social media strategy across content, community, and paid media.",
+  keywords: [
+    "Social Media Agency Singapore",
+    "How to Choose a Social Media Agency",
+    "Social Media Agency Cost Singapore",
+    "Social Media Marketing Singapore",
+    "Hiring a Social Media Agency",
+  ],
+  featuredImage:
+    "/images/blog/how-to-choose-social-media-agency-singapore/hero.jpg",
+  // Scheduled — Article 3. Hidden from /blog entirely and its article
+  // page 404s until this instant, then publishes automatically.
+  publishAt: "2026-09-10T09:00:00+08:00",
+  lastUpdated: null,
+  socialShare: ["LinkedIn", "Facebook", "WhatsApp", "X", "Copy Link"],
+  tableOfContents: [
+    {
+      id: "what-to-look-for-before-the-first-meeting",
+      label: "What Should You Be Looking for Before the First Meeting?",
+    },
+    {
+      id: "questions-to-ask-during-the-pitch",
+      label: "What Questions Should You Ask During the Pitch?",
+    },
+    {
+      id: "red-flags-in-an-agency-proposal",
+      label: "What Are the Red Flags in an Agency Proposal?",
+    },
+    {
+      id: "what-a-good-engagement-looks-like",
+      label: "What Does a Good Agency Engagement Actually Look Like?",
+    },
+    {
+      id: "how-much-should-it-cost",
+      label: "How Much Should Social Media Agency Services Cost in Singapore?",
+    },
+    { id: "frequently-asked-questions", label: "Frequently Asked Questions" },
+    { id: "verdict", label: "Verdict" },
+  ],
+  introduction: [
+    "The right social media agency in Singapore will understand your audience, produce content that reflects your brand, run paid campaigns that convert, and report results you can actually interpret. The wrong one will send you monthly PDFs with vanity metrics while your engagement flatlines. Here's how to tell the difference before you sign anything.",
+  ],
+  keyTakeaways: [
+    "Judge a Singapore social media agency on evidence — its client portfolio, how long those relationships last, and specific result numbers — not on the pitch deck.",
+    "Ask who will actually manage your account day-to-day: more than 8–10 active accounts per team member usually means diluted attention.",
+    'A real agency separates organic strategy and paid ad creative into distinct briefs, objectives, and formats — "post content and boost the good ones" is not a strategy.',
+    "Treat guaranteed follower numbers, vague deliverables, and a missing onboarding process as proposal red flags.",
+    "Strategy should come before the content calendar — Envis8ge's engagement runs audience, offer, and funnel research first, with content strategy fifth of eight steps.",
+    "Singapore market rates run roughly S$800–S$1,500/month for basic organic posting up to S$3,000–S$8,000+/month for organic plus paid management, with ad spend separate from S$750 per campaign.",
+  ],
+  body: [
+    {
+      type: "heading",
+      id: "what-to-look-for-before-the-first-meeting",
+      text: "What Should You Be Looking for Before the First Meeting?",
+    },
+    {
+      type: "paragraph",
+      text: "Start with evidence, not pitch decks. A social media agency's own channels and case studies are the most reliable signal of what you'll get.",
+    },
+    { type: "subheading", text: "Check their client portfolio first." },
+    {
+      type: "paragraph",
+      text: "Have they managed brands in your category — retail, F&B, finance, healthcare, services? Social media strategy is genuinely different across industries. An agency that has only managed restaurants will struggle with a B2B brand, and vice versa.",
+    },
+    { type: "subheading", text: "Look at how long relationships last." },
+    {
+      type: "paragraph",
+      text: "A portfolio with 20 clients, none of which appear to have been retained beyond a campaign, is a warning sign. Envis8ge has managed some clients since 2013 — over 13 years of ongoing relationships. That's only possible when results are consistent enough for clients to keep renewing.",
+    },
+    { type: "subheading", text: "Ask for specific numbers, not screenshots." },
+    {
+      type: "paragraph",
+      text: '"We grew this brand\'s Instagram" is not a result. "Facebook fans grew 160% in 7 months, engaged users increased 61.1x" is a result. Any agency worth hiring should be able to give you numbers that specific — not just screenshots of dashboards with no context.',
+    },
+
+    {
+      type: "heading",
+      id: "questions-to-ask-during-the-pitch",
+      text: "What Questions Should You Ask During the Pitch?",
+    },
+    {
+      type: "paragraph",
+      text: "Most agency pitches are designed to impress, not inform. These questions cut through:",
+    },
+    {
+      type: "list",
+      ordered: true,
+      items: [
+        {
+          lead: "Who will actually be managing my account?",
+          text: "Many agencies pitch senior staff but assign junior account managers after signing. Ask explicitly who your day-to-day contact will be, what other accounts they're managing, and how many accounts each team member handles. More than 8–10 active accounts per person usually means diluted attention.",
+        },
+        {
+          lead: "How do you separate organic strategy from ad creative?",
+          text: 'If the answer is "we post content and boost the good ones," that\'s not a strategy. Organic content and paid ad creative should be planned with different briefs, different objectives, and different formats — even if they share a brand voice.',
+        },
+        {
+          lead: "Can I see examples of community management, not just content?",
+          text: "Anyone can produce pretty posts. Community management — responding to comments, handling complaints, moderating discussions, turning DMs into leads — is where most agencies fall short. Ask to see actual response examples or a community report.",
+        },
+        {
+          lead: "How do you report results and what metrics do you track?",
+          text: "Impressions and follower counts are easy to inflate. Ask which metrics tie back to your business goal: registrations, enquiries, traffic, or sales. A good agency will show you a sample report that distinguishes between vanity metrics and conversion indicators.",
+        },
+        {
+          lead: "What happens when content isn't performing?",
+          text: 'The answer you want: "We review the data at [X cadence], identify what\'s underperforming, and adjust the content mix, posting time, or creative direction." The answer that\'s a red flag: "We\'ll post more frequently" or "It takes time."',
+        },
+      ],
+    },
+
+    {
+      type: "heading",
+      id: "red-flags-in-an-agency-proposal",
+      text: "What Are the Red Flags in an Agency Proposal?",
+    },
+    {
+      type: "list",
+      ordered: false,
+      items: [
+        {
+          lead: "Guaranteed follower numbers.",
+          text: 'Follower growth is influenced by content quality, paid spend, and audience fit — none of which can be guaranteed to produce a specific number. Any agency promising "500 new followers per month" is either planning to inflate through paid growth tactics or is overpromising.',
+        },
+        {
+          lead: "Vague deliverables.",
+          text: '"X posts per month" without specifying format (static, video, carousel, Story), platforms, caption length, or who handles photography is not a contract — it\'s ambiguity that will cost you later.',
+        },
+        {
+          lead: "No onboarding process.",
+          text: "A legitimate social media agency will ask about your brand voice, audience personas, competitors, content that's worked before, and platforms you're on before proposing anything. If the proposal arrives before those questions are asked, it was written for another client and rebranded.",
+        },
+        {
+          lead: "No mention of paid strategy.",
+          text: 'Organic content and paid campaigns are distinct services with different skill sets. An agency that lumps "social media management" into one undifferentiated offering may be weak on one side — often paid.',
+        },
+      ],
+    },
+
+    {
+      type: "heading",
+      id: "what-a-good-engagement-looks-like",
+      text: "What Does a Good Agency Engagement Actually Look Like?",
+    },
+    {
+      type: "paragraph",
+      text: "At Envis8ge, a new client engagement follows a structured 8-step process that starts before any content is produced: audience research, product and offer research, funnel mapping, and integration with existing marketing activity. Content strategy comes fifth — not first.",
+    },
+    {
+      type: "paragraph",
+      text: "This matters because an agency that starts with \"here's your content calendar\" has skipped the research that determines whether the content will actually work. Brands like Maybank and VF Brands (Kipling) don't stay with an agency for years because the posts look good — they stay because the strategy is grounded in how their audiences actually behave.",
+    },
+    {
+      type: "paragraph",
+      text: "Minimum expectations from a competent agency:",
+    },
+    {
+      type: "list",
+      ordered: false,
+      items: [
+        "Monthly content calendar delivered in advance (not the same week)",
+        "Ad campaign reports with spend breakdown, CPR, and audience performance — not just screenshots",
+        "Proactive recommendations, not just execution",
+        "Clear escalation process if something goes wrong (a product complaint, a negative comment thread, a mistimed post)",
+      ],
+    },
+
+    {
+      type: "heading",
+      id: "how-much-should-it-cost",
+      text: "How Much Should Social Media Agency Services Cost in Singapore?",
+    },
+    {
+      type: "paragraph",
+      text: "Cost varies significantly by scope, but here's a realistic range for Singapore market rates:",
+    },
+    {
+      type: "comparisonTable",
+      headers: ["Monthly range"],
+      rows: [
+        {
+          label: "Basic organic management (posting only, 2–3 platforms)",
+          values: ["S$800–S$1,500"],
+        },
+        {
+          label: "Full organic management (strategy, content, community mgmt)",
+          values: ["S$2,000–S$4,500"],
+        },
+        {
+          label: "Organic + paid campaign management (Meta or LinkedIn)",
+          values: ["S$3,000–S$8,000+"],
+        },
+        {
+          label: "Ad spend (separate from management fee)",
+          values: ["From S$750 per campaign"],
+        },
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "Agencies significantly below these ranges are usually skipping strategy, relying on templates, or managing too many accounts per person. Agencies significantly above these ranges without a clear value differential — named senior talent, proven results in your category, proprietary tools — are worth questioning.",
+    },
+  ],
+  faq: [
+    {
+      question:
+        "How long should a social media agency contract be in Singapore?",
+      answer:
+        "Most agencies work on 3–6 month initial contracts. This is reasonable — social media takes time to show results, and an agency needs a minimum of 90 days to build audience, test content, and demonstrate performance. Month-to-month arrangements are available from some agencies but usually come at a premium. We'd be cautious of any agency requesting a 12-month lock-in upfront without a performance review clause.",
+    },
+    {
+      question:
+        "Should I hire a freelancer or an agency for social media in Singapore?",
+      answer:
+        "A skilled freelancer can manage organic content well at lower cost — typically S$600–S$1,500/month. The trade-offs are: less capacity during busy periods, no team backup, and usually limited paid campaign expertise. An agency brings a team (strategist, copywriter, designer, media buyer), multiple client learnings, and more consistent output. For brands needing both organic and paid managed simultaneously, an agency is usually the better fit.",
+    },
+    {
+      question:
+        "What's the difference between a social media agency and a digital marketing agency in Singapore?",
+      answer:
+        "A social media agency specialises in Facebook, Instagram, LinkedIn, and TikTok — content strategy, community management, and social ad campaigns. A digital marketing agency covers a broader remit including SEO, Google Ads, email marketing, and website work. Some agencies do both; Envis8ge, for example, runs social media management alongside email marketing, website design, and digital ad campaigns. The distinction matters when scoping — make sure whichever agency you hire has demonstrated depth in the specific channel you need, not just general digital expertise.",
+    },
+    {
+      question: "How do I know if my current agency is underperforming?",
+      answer:
+        "Key signals: engaged users are flat or declining despite consistent posting; paid campaign CPR (cost per result) isn't improving over time; you receive reports but no recommendations; response time on your page is slow or inconsistent; you have to chase the agency for updates rather than receiving them proactively. If three or more of these apply, it's worth reviewing the relationship.",
+    },
+    {
+      question:
+        "Can a Singapore social media agency manage both organic and paid campaigns?",
+      answer:
+        "Yes, and ideally they should. The best results come when organic content and paid campaigns are planned by the same team — organic builds the warm audience that paid campaigns can retarget, and paid content performance informs the organic strategy. When these are managed by separate agencies or handled inconsistently, the brand message and budget efficiency both suffer.",
+    },
+  ],
+  verdict: {
+    paragraphs: [
+      "The difference between a good and a poor social media agency in Singapore usually shows up within 90 days — in the quality of the strategy document, the depth of the reporting, and whether the content looks like it was made for your audience or adapted from a template.",
+      "Before signing anything, ask for specific case study numbers, meet the person who will actually manage your account, and make sure the agency separates organic and paid into distinct strategies. An agency that passes those tests is worth a serious conversation.",
+    ],
+    pullQuote:
+      "The difference between a good and a poor social media agency in Singapore usually shows up within 90 days.",
+  },
+  cta: {
+    heading: "Ready to get STARTED?",
+    body: "Talk to Envis8ge about your social media — we'll walk you through our process, the team who'd manage your account, and the results to expect.",
+    buttonText: "Talk to Envis8ge about your social media strategy →",
+    href: "https://envis8ge.com/contact-us",
+  },
+};
+
+export const articles = [
+  organicVsPaidArticle,
+  socialMediaContentArticle,
+  howToChooseAgencyArticle,
+];

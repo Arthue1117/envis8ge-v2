@@ -69,7 +69,7 @@ export function MobileNav() {
                       aria-current={active ? "page" : undefined}
                       className={cn(
                         "font-heading text-2xl font-semibold",
-                        active ? "text-primary" : "text-foreground"
+                        active ? "text-primary-text" : "text-foreground"
                       )}
                     >
                       {item.label}

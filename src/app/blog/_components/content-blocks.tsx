@@ -1,4 +1,4 @@
-import { AlertTriangle, Check, Lightbulb, ImageOff } from "lucide-react";
+import { AlertTriangle, Check, Lightbulb } from "lucide-react";
 
 import { FadeIn } from "@/components/motion/fade-in";
 import { Card } from "@/components/ui/card";
@@ -25,7 +25,7 @@ export function KeyTakeaways({ items }: { items: string[] }) {
             <li key={item} className="flex gap-3 text-sm">
               <Check
                 aria-hidden
-                className="text-primary mt-0.5 size-4 shrink-0"
+                className="text-foreground mt-0.5 size-4 shrink-0"
               />
               <span>{item}</span>
             </li>
@@ -50,7 +50,7 @@ const calloutToneStyles = {
   tip: {
     icon: Lightbulb,
     box: "bg-primary-tint/40 border-l-4 border-primary",
-    iconColor: "text-primary",
+    iconColor: "text-foreground",
   },
 } as const;
 
@@ -91,7 +91,7 @@ export function CaseStudyCard({
   return (
     <FadeIn>
       <Card className="border-primary/20 border p-6">
-        <span className="text-primary text-xs font-semibold tracking-wide uppercase">
+        <span className="text-primary-text text-xs font-semibold tracking-wide uppercase">
           Case Study
         </span>
         <dl className="mt-3 flex flex-col gap-2">
@@ -172,7 +172,7 @@ export function Statistics({
       {items.map((item, i) => (
         <FadeIn key={item.figure} delay={i * 0.03}>
           <Card className="h-full p-4 text-center">
-            <div className="font-heading text-primary tablet:text-2xl text-xl font-bold">
+            <div className="font-heading text-primary-text tablet:text-2xl text-xl font-bold">
               {item.figure}
             </div>
             <div className="text-muted-foreground mt-1 text-xs">
@@ -185,11 +185,35 @@ export function Statistics({
   );
 }
 
-export function ImagePlaceholder({ caption }: { caption: string }) {
+export function List({
+  ordered,
+  items,
+}: Extract<ContentBlock, { type: "list" }>) {
+  const ListTag = ordered ? "ol" : "ul";
+
   return (
-    <div className="bg-muted flex aspect-video flex-col items-center justify-center gap-2 rounded-md text-center">
-      <ImageOff aria-hidden className="size-8 text-neutral-400" />
-      <p className="text-muted-foreground max-w-xs px-4 text-xs">{caption}</p>
-    </div>
+    <FadeIn>
+      <ListTag
+        className={cn(
+          "text-foreground tablet:gap-3 tablet:pl-6 flex flex-col gap-2 pl-5 leading-relaxed",
+          ordered ? "list-decimal" : "list-disc"
+        )}
+      >
+        {items.map((item, i) => (
+          <li key={i} className="marker:text-primary-text pl-1.5">
+            {typeof item === "string" ? (
+              item
+            ) : (
+              <>
+                <strong className="text-foreground font-semibold">
+                  {item.lead}
+                </strong>{" "}
+                {item.text}
+              </>
+            )}
+          </li>
+        ))}
+      </ListTag>
+    </FadeIn>
   );
 }

@@ -5,7 +5,7 @@ import {
   CalloutBox,
   CaseStudyCard,
   ComparisonTable,
-  ImagePlaceholder,
+  List,
   PullQuote,
   Statistics,
 } from "./content-blocks";
@@ -76,8 +76,15 @@ export function ArticleBody({ blocks }: { blocks: ContentBlock[] }) {
             );
           case "statistics":
             return <Statistics key={i} type="statistics" items={block.items} />;
-          case "imagePlaceholder":
-            return <ImagePlaceholder key={i} caption={block.caption} />;
+          case "list":
+            return (
+              <List
+                key={i}
+                type="list"
+                ordered={block.ordered}
+                items={block.items}
+              />
+            );
           default:
             return null;
         }

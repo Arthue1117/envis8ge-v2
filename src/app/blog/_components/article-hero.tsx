@@ -1,9 +1,9 @@
-import Image from "next/image";
-
 import { FadeIn } from "@/components/motion/fade-in";
+import { ParallaxImage } from "@/components/motion/parallax-image";
 import { formatReadingTime } from "@/lib/reading-time";
 
 import type { Article } from "../_data/types";
+import { publishedDateLabel } from "../_lib/publish";
 import { SocialShare } from "./social-share";
 
 /**
@@ -24,13 +24,13 @@ export function ArticleHero({
   url: string;
   readingMinutes: number;
 }) {
-  const publishLabel = article.publishedAt ?? "To be published";
+  const publishLabel = publishedDateLabel(article) ?? "To be published";
 
   return (
     <header className="tablet:pt-14 border-b border-neutral-200 pt-10 pb-10">
       <div className="tablet:px-6 mx-auto w-full max-w-[1200px] px-4">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <span className="bg-primary-tint text-primary rounded-pill inline-block px-3 py-1 text-xs font-semibold">
+          <span className="bg-primary-tint text-foreground rounded-pill inline-block px-3 py-1 text-xs font-semibold">
             {article.category}
           </span>
           <h1 className="font-heading text-foreground tablet:text-4xl desktop:text-5xl mt-4 text-3xl font-bold">
@@ -65,10 +65,9 @@ export function ArticleHero({
           delay={0.1}
           className="relative mx-auto mt-10 aspect-video w-full max-w-4xl overflow-hidden rounded-lg shadow-lg"
         >
-          <Image
+          <ParallaxImage
             src={article.featuredImage}
             alt={article.title}
-            fill
             priority
             className="object-cover"
           />

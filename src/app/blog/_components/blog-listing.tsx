@@ -47,10 +47,14 @@ export function BlogListing({
     });
   }, [articles, activeCategory, query]);
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-  const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
-  const featured = paged[0];
-  const rest = paged.slice(1);
+  // The Featured card is the newest published article. `articles` arrives
+  // newest -> oldest and the filter preserves that order, so the first
+  // result is the newest match for the current search/category.
+  const featured = filtered[0];
+  const remaining = filtered.filter((a) => a.slug !== featured?.slug);
+
+  const totalPages = Math.max(1, Math.ceil(remaining.length / PAGE_SIZE));
+  const rest = remaining.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
     <div>

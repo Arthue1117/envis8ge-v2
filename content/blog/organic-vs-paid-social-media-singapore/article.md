@@ -76,8 +76,6 @@ Organic posts also function as social proof. A new lead who clicks through from 
 > - Drive targeted reach to cold audiences
 > - Generate leads or registrations on a fixed timeline
 
-*[Image placeholder — supporting image for the Organic section; to be supplied, no stock substitute]*
-
 <a id="what-does-paid-social-media-actually-buy-you"></a>
 ### What Does Paid Social Media Actually Buy You?
 
