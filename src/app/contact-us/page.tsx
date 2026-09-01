@@ -5,11 +5,9 @@ import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { siteConfig } from "@/config/site";
 
 import { contactFaq } from "./_data/form-options";
-import { ContactCta } from "./_components/contact-cta";
+import { ContactForm } from "./_components/contact-form";
 import { ContactHero } from "./_components/contact-hero";
-import { GhlContactForm } from "./_components/ghl-contact-form";
 import { ContactInfoCards } from "./_components/contact-info-cards";
-import { MapPlaceholder } from "./_components/map-placeholder";
 
 const title = "Contact Us";
 const description =
@@ -102,22 +100,7 @@ export default function ContactPage() {
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-3xl">
-          <GhlContactForm />
-        </div>
-      </Section>
-
-      <Section>
-        <ContactCta />
-      </Section>
-
-      <Section background="muted">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-foreground tablet:text-3xl text-2xl font-bold">
-            Find Us
-          </h2>
-        </div>
-        <div className="mx-auto mt-8 max-w-3xl">
-          <MapPlaceholder />
+          <ContactForm />
         </div>
       </Section>
 

@@ -10,5 +10,12 @@
   },
   "images": {
     "binding": "IMAGES"
+  },
+  "vars": {
+    // Not secret — just an identifier for which Resend segment new
+    // contact-form submissions get added to. RESEND_API_KEY is the
+    // secret half of this integration; set it with
+    // `wrangler secret put RESEND_API_KEY` (never stored in this repo).
+    "RESEND_SEGMENT_ID": "62d0fb84-cdd0-4b02-b211-4be31c3f7006"
   }
 }

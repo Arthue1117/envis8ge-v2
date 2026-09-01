@@ -1,4 +1,16 @@
 /**
+ * Contact form "Service Interested In" dropdown — exact list as
+ * specified for the Resend-powered contact form.
+ */
+export const serviceOptions = [
+  "Lead Generation",
+  "Content Strategy & Management",
+  "Landing Page Development",
+  "Funnel Development",
+  "Others",
+] as const;
+
+/**
  * FAQ answers are grounded in confirmed facts where they exist
  * (industries, regional client base — both from the locked Brand
  * Guidelines). "How soon will you reply?" has no confirmed SLA anywhere
