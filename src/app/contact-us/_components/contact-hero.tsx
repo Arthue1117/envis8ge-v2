@@ -1,45 +1,23 @@
-"use client";
-
-import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import { useRef } from "react";
-
 import { FadeIn } from "@/components/motion/fade-in";
+import { ParallaxImage } from "@/components/motion/parallax-image";
 
 /**
- * Full-width Contact hero. Background is a literal "how to reach us"
- * graphic — a simplified Singapore map with a location pin at the
- * confirmed office address, plus flat envelope/phone/chat glyphs —
- * rather than the earlier abstract glowing-rings/data-ping composition,
- * which read as decorative "animated tech" rather than anything
- * connected to actually contacting Envis8ge. Same honest construction as
- * the other hero backgrounds: a hand-authored SVG rasterized to a real
- * file, not a fabricated stock photo.
+ * Full-width Contact hero. Same fixed-height dark hero band pattern
+ * as BlogHero/PortfolioHero.
  */
 export function ContactHero() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-
   return (
-    <section
-      ref={ref}
-      className="tablet:h-[420px] desktop:h-[460px] relative flex h-[320px] items-center overflow-hidden bg-black"
-    >
-      <motion.div style={{ y }} className="absolute inset-0">
-        <Image
-          src="/images/backgrounds/contact-hero-bg-v2.jpg"
-          alt=""
-          fill
-          priority
-          className="object-cover"
-        />
-      </motion.div>
+    <section className="tablet:h-[420px] desktop:h-[460px] relative flex h-[320px] items-center overflow-hidden bg-black">
+      <ParallaxImage
+        src="/images/banners/contactus.jpg"
+        alt=""
+        priority
+        className="object-cover"
+      />
 
-      <div className="absolute inset-0 bg-black/40" />
+      {/* Dark overlay (~60%, calibrated so text stays WCAG AA-readable
+          even over the image's brightest highlights) + soft vignette */}
+      <div className="absolute inset-0 bg-black/60" />
       <div
         className="absolute inset-0"
         style={{

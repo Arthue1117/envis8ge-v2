@@ -1,46 +1,25 @@
-"use client";
-
-import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import { useRef } from "react";
-
 import { FadeIn } from "@/components/motion/fade-in";
+import { ParallaxImage } from "@/components/motion/parallax-image";
 
 import { portfolioHero } from "../_data/copy";
 
 /**
  * Confirmed "Our Works" heading + subheading (_data/copy.ts), same
- * fixed-height dark hero band pattern as BlogHero. Reuses the same
- * background image as the Blog/Contact heroes
- * (public/images/backgrounds/blog-hero-bg.jpg) rather than a bespoke
- * graphic per page, so the dark hero band reads as one consistent,
- * aligned treatment across Portfolio/Blog/Contact instead of three
- * different one-off designs.
+ * fixed-height dark hero band pattern as BlogHero.
  */
 export function PortfolioHero() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-
   return (
-    <section
-      ref={ref}
-      className="tablet:h-[420px] desktop:h-[460px] relative flex h-[300px] items-center overflow-hidden bg-black"
-    >
-      <motion.div style={{ y }} className="absolute inset-0">
-        <Image
-          src="/images/backgrounds/blog-hero-bg.jpg"
-          alt=""
-          fill
-          priority
-          className="object-cover"
-        />
-      </motion.div>
+    <section className="tablet:h-[420px] desktop:h-[460px] relative flex h-[300px] items-center overflow-hidden bg-black">
+      <ParallaxImage
+        src="/images/banners/portfolio.jpg"
+        alt=""
+        priority
+        className="object-cover"
+      />
 
-      <div className="absolute inset-0 bg-black/40" />
+      {/* Dark overlay (~60%, calibrated so text stays WCAG AA-readable
+          even over the image's brightest highlights) + soft vignette */}
+      <div className="absolute inset-0 bg-black/60" />
       <div
         className="absolute inset-0"
         style={{
