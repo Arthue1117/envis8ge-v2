@@ -1,5 +1,6 @@
 const RESEND_CONTACTS_URL = "https://api.resend.com/contacts";
 const RESEND_EMAILS_URL = "https://api.resend.com/emails";
+const RESEND_EVENTS_URL = "https://api.resend.com/events/send";
 
 const INTERNAL_LEAD_NOTIFICATION_FROM = "Envis8ge Website <from@envis8ge.com>";
 const INTERNAL_LEAD_NOTIFICATION_RECIPIENTS = [
@@ -7,24 +8,12 @@ const INTERNAL_LEAD_NOTIFICATION_RECIPIENTS = [
   "shawn@envis8ge.com",
 ];
 
-const CONTACT_ACKNOWLEDGEMENT_FROM = "Shawn Yeo <shawn@envis8ge.com>";
-
-/**
- * Service dropdown values that don't name a real service and shouldn't
- * be echoed back to the submitter (docs/nurture-sequence-export/
- * envis8ge-nurture-sequence-v2.md §5's `{{service}}` fallback rule).
- */
-const GENERIC_SERVICE_VALUES = new Set(["", "others"]);
-
 interface UpsertResendContactInput {
   apiKey: string;
   segmentId: string;
   firstName: string;
   lastName: string;
-  phone: string;
   email: string;
-  service: string;
-  message: string;
 }
 
 interface ResendContactRecord {
@@ -72,33 +61,40 @@ async function readAndLogResendResponse(
  * the contact's actual Resend id: the segment-assignment endpoint is
  * keyed by contact id, not email.
  *
- * Does not trigger any follow-up automation — per
- * docs/nurture-sequence-export/envis8ge-nurture-sequence-v2.md §3, a
- * Contact Form lead gets exactly one email (sent separately by
- * `sendContactAcknowledgementEmail`) and nothing after it. `source:
- * "contact_form"` is stored as a contact property so a future Lead
- * Magnet integration can distinguish the two entry paths without
- * touching this function.
+ * This function only creates/updates the contact and assigns the
+ * "website leads" segment — it sends no email and fires no event. The
+ * route handler (src/app/api/contact/route.ts) fires the
+ * `contact_form_submitted` and `shared_newsletter_entry` events after
+ * this resolves; those drive the (currently disabled) Welcome and
+ * Shared Newsletter automations.
+ *
+ * No `properties` field is sent here: confirmed live (2026-09-02) that
+ * this Resend account's Contacts API rejects any `properties` object
+ * with a 422 "One or more properties do not exist" — a real Resend
+ * contact record only has `email`/`first_name`/`last_name`/
+ * `unsubscribed`, nothing custom is defined for this audience, and
+ * there's no API to define one (dashboard-only, if it exists at all).
+ * Sending it made contact creation fail 100% of the time. Phone,
+ * service, message, and the "contact_form" source tag are NOT lost —
+ * they're still recorded in full on every submission via
+ * `sendInternalLeadNotification`'s email body below. If phone/service/
+ * message/source ever need to live on the Resend contact itself, that
+ * requires first defining those as custom contact properties in the
+ * Resend dashboard for the "website leads" audience
+ * (62d0fb84-cdd0-4b02-b211-4be31c3f7006) — an account-side change, not
+ * a code change.
  */
 export async function upsertResendContact({
   apiKey,
   segmentId,
   firstName,
   lastName,
-  phone,
   email,
-  service,
-  message,
 }: UpsertResendContactInput): Promise<void> {
   const headers = {
     Authorization: `Bearer ${apiKey}`,
     "Content-Type": "application/json",
   };
-
-  // Resend contacts have no native `phone` field — phone, the selected
-  // service, the message/details text, and the entry-source tag are
-  // preserved as custom contact properties.
-  const properties = { phone, service, message, source: "contact_form" };
 
   const createResult = await readAndLogResendResponse(
     "create contact",
@@ -110,7 +106,6 @@ export async function upsertResendContact({
         first_name: firstName,
         last_name: lastName,
         unsubscribed: false,
-        properties,
         segments: [{ id: segmentId }],
       }),
     })
@@ -132,7 +127,6 @@ export async function upsertResendContact({
             first_name: firstName,
             last_name: lastName,
             unsubscribed: false,
-            properties,
           }),
         }
       )
@@ -176,6 +170,9 @@ interface SendInternalLeadNotificationInput {
   email: string;
   service: string;
   message: string;
+  recipients?: string[];
+  subject?: string;
+  requireDelivery?: boolean;
 }
 
 /**
@@ -193,6 +190,9 @@ export async function sendInternalLeadNotification({
   email,
   service,
   message,
+  recipients = INTERNAL_LEAD_NOTIFICATION_RECIPIENTS,
+  subject,
+  requireDelivery = false,
 }: SendInternalLeadNotificationInput): Promise<void> {
   try {
     const response = await fetch(RESEND_EMAILS_URL, {
@@ -203,9 +203,10 @@ export async function sendInternalLeadNotification({
       },
       body: JSON.stringify({
         from: INTERNAL_LEAD_NOTIFICATION_FROM,
-        to: INTERNAL_LEAD_NOTIFICATION_RECIPIENTS,
+        to: recipients,
         reply_to: email,
-        subject: `New contact form lead: ${firstName} ${lastName}`,
+        subject:
+          subject ?? `New contact form lead: ${firstName} ${lastName}`.trim(),
         text: [
           `Name: ${firstName} ${lastName}`,
           `Email: ${email}`,
@@ -221,72 +222,60 @@ export async function sendInternalLeadNotification({
       console.error(
         `Failed to send internal lead notification (${response.status}): ${detail}`
       );
+      if (requireDelivery)
+        throw new Error(
+          "Lead notification was not accepted by the email provider."
+        );
     }
   } catch (error) {
     console.error("Failed to send internal lead notification:", error);
+    if (requireDelivery) throw error;
   }
 }
 
-interface SendContactAcknowledgementEmailInput {
+interface TriggerResendEventInput {
   apiKey: string;
-  firstName: string;
+  event: string;
   email: string;
-  service: string;
+  payload?: Record<string, string>;
 }
 
 /**
- * Contact Form immediate acknowledgement —
- * docs/nurture-sequence-export/envis8ge-nurture-sequence-v3.md §6. Per
- * the boss's latest feedback, this is a short, purely transactional
- * acknowledgement only — no sales copy, no CTA, no newsletter content.
- * The Contact Form lead's entry into the shared newsletter (§7) is a
- * separate, not-yet-built step, not part of this email. Best effort:
- * the contact is already saved and the internal team already notified
- * by the time this runs, so a failure here is logged rather than
- * surfaced as a form error.
+ * Fires a Resend custom event (POST /events/send) to trigger a matching
+ * automation. Best effort: the contact is already saved by the time
+ * this runs, and a DISABLED automation simply ignores the event, so a
+ * failure here is logged rather than surfaced as a form error.
+ *
+ * Safe to ship before the "Contact Form Welcome" / "Shared Newsletter"
+ * automations are enabled — Resend records the event (auto-registering
+ * the name on first use) and it has no effect until an automation that
+ * listens on it is turned on.
  */
-export async function sendContactAcknowledgementEmail({
+export async function triggerResendEvent({
   apiKey,
+  event,
   email,
-  service,
-}: SendContactAcknowledgementEmailInput): Promise<void> {
-  const normalizedService = service.trim().toLowerCase();
-  const hasNamedService = !GENERIC_SERVICE_VALUES.has(normalizedService);
-
-  const subject = "Thank you for your message";
-
-  const openingLine = hasNamedService
-    ? `Thank you for your message on ${service.trim()}.`
-    : "Thank you for your message.";
-
-  const text = [
-    openingLine,
-    "",
-    "Your email is being routed to our relevant team and we'll get back to you soon!",
-  ].join("\n");
-
+  payload,
+}: TriggerResendEventInput): Promise<void> {
   try {
-    const response = await fetch(RESEND_EMAILS_URL, {
+    const response = await fetch(RESEND_EVENTS_URL, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        from: CONTACT_ACKNOWLEDGEMENT_FROM,
-        to: email,
-        subject,
-        text,
-      }),
+      body: JSON.stringify(
+        payload ? { event, email, payload } : { event, email }
+      ),
     });
 
     if (!response.ok) {
       const detail = await response.text().catch(() => "");
       console.error(
-        `Failed to send contact acknowledgement email (${response.status}): ${detail.slice(0, 500)}`
+        `Resend event "${event}" failed (${response.status}): ${detail.slice(0, 500)}`
       );
     }
   } catch (error) {
-    console.error("Failed to send contact acknowledgement email:", error);
+    console.error(`Resend event "${event}" threw:`, error);
   }
 }
