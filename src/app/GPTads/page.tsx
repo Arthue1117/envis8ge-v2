@@ -541,9 +541,6 @@ export default function GptAdsPage() {
                 <span /> Only 10 ChatGPT Ads client spots for now, as this is a
                 new service.
               </p>
-              <a className={styles.email} href="mailto:contact@envis8ge.com">
-                contact@envis8ge.com <ArrowUpRight size={17} aria-hidden />
-              </a>
             </div>
             <GptAdsForm />
           </div>
