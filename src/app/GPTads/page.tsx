@@ -19,6 +19,7 @@ import {
 import { Container } from "@/components/layout/container";
 import { GptAdsForm } from "./consultation-form";
 import { GptAdsPixel } from "./pixel";
+import { CountUp, MobileCta, ScrollReveal } from "./motion";
 import styles from "./page.module.css";
 
 const description =
@@ -132,39 +133,56 @@ const testimonials = [
     quote:
       "Over the past 4 months we achieved an average cost per lead of $7.08. They took time to understand our courses and target audience, and they are absolutely transparent in their work.",
     name: "Allan Lee",
+    stat: "$7.08",
+    statLabel: "average cost per lead",
     title: "Head of Marketing, Acetek College",
   },
   {
     quote:
       "Over the 11 months we have worked together, Envis8ge has generated 1,500+ leads for Stag Match Institute. Rigorous optimisation, an affordable retainer, CRM integration and knowledge of the training industry.",
     name: "Kelvin Wo",
+    stat: "1,500+",
+    statLabel: "leads in 11 months",
     title: "Director of Sales and Business Development, Stag Match Institute",
   },
   {
     quote:
       "We just wanted to focus on our core business of teaching, while leaving the essentials of marketing to the professional. During the first month we achieved 13 leads at an incredible $3.03 per lead.",
     name: "Alethea Ler",
+    stat: "$3.03",
+    statLabel: "per lead in the first month",
     title: "Founder, My Chinese Steps",
   },
   {
     quote:
       "Despite already having an active social media presence, we have achieved 2X reach and 1.5X link clicks for our brand. I would commend them for their responsiveness and willingness to go the extra mile.",
     name: "Adelle Khang",
+    stat: "2X",
+    statLabel: "reach for the brand",
     title: "Assistant Marketing Manager, Kipling",
   },
   {
     quote:
-      "From near-zero growth and engagement, we have a much more active Facebook and Instagram page. It has been a fantastic and enjoyable experience working with Envis8ge, despite the cross-border communication.",
-    name: "Heena Dhobi",
-    title: "National Account Manager, Barry M Cosmetics",
+      "Over a period of 6 months we have a more active Facebook page with an increase in reach and engagement. Our number of fans has increased by 4.2X.",
+    name: "Paul Chong",
+    stat: "4.2X",
+    statLabel: "more Facebook fans",
+    title: "Vice President Marketing, VSTECS Singapore",
   },
   {
     quote:
       "Since Envis8ge took over our social media, our Facebook fans have increased by 160% and reach by 32.4X. Time and time again they have gone beyond their defined work scope to help with a request.",
     name: "Leo Chu",
+    stat: "32.4X",
+    statLabel: "increase in reach",
     title: "Founder, U China Travel",
   },
 ];
+
+const promptWords =
+  "“I’m looking for something a little different. What are my options?”".split(
+    " "
+  );
 
 const faqs = [
   [
@@ -197,7 +215,9 @@ export default function GptAdsPage() {
   return (
     <div className={styles.page}>
       <GptAdsPixel />
-      <section className={styles.hero}>
+      <ScrollReveal />
+      <MobileCta />
+      <section className={styles.hero} id="gptads-hero">
         <Container>
           <div className={styles.heroGrid}>
             <div>
@@ -212,12 +232,14 @@ export default function GptAdsPage() {
                 up, run and measure your campaign so you get there before your
                 competitors.
               </p>
-              <a href="#consultation" className={styles.primary}>
-                Check if ChatGPT Ads will work for you <ArrowUpRight size={19} aria-hidden />
+              <a
+                href="#consultation"
+                className={`${styles.primary} ${styles.heroCta}`}
+              >
+                Check if ChatGPT Ads will work for you{" "}
+                <ArrowUpRight size={19} aria-hidden />
               </a>
-              <p className={styles.heroNote}>
-                Free assessment · No obligation
-              </p>
+              <p className={styles.heroNote}>Free assessment · No obligation</p>
               <p className={styles.spots}>
                 <span /> New service: we’re taking on only 10 ChatGPT Ads
                 clients for now.
@@ -229,8 +251,11 @@ export default function GptAdsPage() {
                 <span>From curiosity to possibility</span>
               </div>
               <div className={styles.prompt}>
-                “I’m looking for something a little different. What are my
-                options?”
+                {promptWords.map((word, i) => (
+                  <span key={i} style={{ "--i": i } as React.CSSProperties}>
+                    {word}{" "}
+                  </span>
+                ))}
               </div>
               <div className={styles.answerLines}>
                 <span />
@@ -274,13 +299,17 @@ export default function GptAdsPage() {
             </h2>
             <p>
               Now is the best time for B2C businesses to get into ChatGPT Ads.
-              Few companies are advertising there yet, so early movers have
-              more room to be noticed.
+              Few companies are advertising there yet, so early movers have more
+              room to be noticed.
             </p>
           </div>
           <div className={styles.benefits}>
-            {whyNow.map(({ icon: Icon, title, text }) => (
-              <article key={title}>
+            {whyNow.map(({ icon: Icon, title, text }, i) => (
+              <article
+                key={title}
+                data-reveal
+                style={{ "--i": i } as React.CSSProperties}
+              >
                 <Icon className={styles.icon} size={29} aria-hidden />
                 <h3>{title}</h3>
                 <p>{text}</p>
@@ -309,8 +338,12 @@ export default function GptAdsPage() {
             </p>
           </div>
           <div className={styles.services}>
-            {services.map(([number, title, text]) => (
-              <article key={number}>
+            {services.map(([number, title, text], i) => (
+              <article
+                key={number}
+                data-reveal
+                style={{ "--i": i } as React.CSSProperties}
+              >
                 <span>{number}</span>
                 <div>
                   <h3>{title}</h3>
@@ -338,8 +371,12 @@ export default function GptAdsPage() {
             </p>
           </div>
           <ol className={styles.deliverables}>
-            {deliverables.map(({ icon: Icon, title, text }) => (
-              <li key={title}>
+            {deliverables.map(({ icon: Icon, title, text }, i) => (
+              <li
+                key={title}
+                data-reveal
+                style={{ "--i": i } as React.CSSProperties}
+              >
                 <Icon className={styles.icon} size={26} aria-hidden />
                 <h3>{title}</h3>
                 <p>{text}</p>
@@ -419,8 +456,18 @@ export default function GptAdsPage() {
           <ClientMarquee />
           <h3 className={styles.testimonialsHeading}>What our clients say</h3>
           <div className={styles.testimonials}>
-            {testimonials.map(({ quote, name, title }) => (
-              <figure key={name}>
+            {testimonials.map(({ stat, statLabel, quote, name, title }, i) => (
+              <figure
+                key={name}
+                data-reveal
+                style={{ "--i": i } as React.CSSProperties}
+              >
+                <p className={styles.stat}>
+                  <strong>
+                    <CountUp value={stat} />
+                  </strong>
+                  {statLabel}
+                </p>
                 <blockquote>“{quote}”</blockquote>
                 <figcaption>
                   <span aria-hidden>{name.charAt(0)}</span>

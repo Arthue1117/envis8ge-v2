@@ -96,14 +96,6 @@ export function GptAdsForm() {
             <figcaption>Scan to chat on WhatsApp</figcaption>
           </figure>
         </div>
-        <p className={styles.small}>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-            wa.link/jzk68z
-          </a>
-        </p>
-        <button className={styles.secondary} onClick={() => setStatus("idle")}>
-          Send another enquiry
-        </button>
       </div>
     );
   return (
