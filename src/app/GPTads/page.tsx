@@ -5,6 +5,7 @@ import {
   Check,
   Sparkles,
   ShieldCheck,
+  CalendarCheck,
   ClipboardList,
   PenLine,
   Layers,
@@ -82,6 +83,11 @@ const whyNow = [
 ];
 
 const deliverables = [
+  {
+    icon: CalendarCheck,
+    title: "Kick-off strategy call",
+    text: "A session to agree goals, offer and audience before anything goes live.",
+  },
   {
     icon: ShieldCheck,
     title: "Account setup walkthrough and business verification",

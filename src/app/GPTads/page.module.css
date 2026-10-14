@@ -344,7 +344,7 @@
 }
 .deliverables {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 22px;
   margin: 40px 0 0;
   padding: 0;
@@ -698,7 +698,8 @@
   .services {
     gap: 0 24px;
   }
-  .testimonials {
+  .testimonials,
+  .deliverables {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -725,7 +726,8 @@
   }
   .benefits,
   .services,
-  .testimonials {
+  .testimonials,
+  .deliverables {
     grid-template-columns: 1fr;
   }
   .testimonials figure {
