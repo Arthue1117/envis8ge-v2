@@ -5,7 +5,7 @@ import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import styles from "./page.module.css";
 import { getGptAdsAttribution, measureGptAdsLead } from "./pixel";
 const WHATSAPP_URL = "https://wa.link/jzk68z";
-export function GptAdsForm({ compact = false }: { compact?: boolean }) {
+export function GptAdsForm() {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -100,7 +100,7 @@ export function GptAdsForm({ compact = false }: { compact?: boolean }) {
     );
   return (
     <form
-      className={compact ? `${styles.form} ${styles.formCompact}` : styles.form}
+      className={styles.form}
       onSubmit={submit}
       aria-busy={status === "loading"}
     >

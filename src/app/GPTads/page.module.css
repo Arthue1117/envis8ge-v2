@@ -411,13 +411,7 @@
 .band {
   background: var(--band);
 }
-/* Video + compact form section below the hero. */
-.videoForm {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 44px;
-  align-items: start;
-}
+/* Full-width video section below the hero. */
 .videoFrame {
   position: relative;
   overflow: hidden;
@@ -453,55 +447,6 @@
 .videoPlay svg {
   margin-left: 3px;
   fill: currentColor;
-}
-.videoFormHeading {
-  margin-bottom: 32px;
-}
-.page .videoFormHeading h2 {
-  font-size: clamp(1.1rem, 4.4vw, 2.2rem);
-  line-height: 1.25;
-  letter-spacing: -0.04em;
-  white-space: nowrap;
-}
-.page .videoFormHeading p {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: var(--muted-foreground);
-}
-.page .formCompact {
-  padding: 22px;
-  background: white;
-}
-/* Compact form: contact number and email side by side. */
-.formCompact fieldset {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 12px;
-  align-items: end;
-}
-.formCompact fieldset > *:not(label),
-.formCompact fieldset > label:first-of-type,
-.formCompact fieldset > label:nth-of-type(n + 4) {
-  grid-column: 1 / -1;
-}
-.formCompact .field {
-  margin-top: 12px;
-}
-.formCompact .field:first-of-type {
-  margin-top: 0;
-}
-.formCompact .field input,
-.formCompact .field select {
-  padding: 9px 11px;
-}
-.page .formCompact .submissionNotice {
-  font-size: 0.68rem;
-  line-height: 1.6;
-  margin-top: 14px !important;
-}
-.formCompact .primary {
-  margin-top: 16px;
-  padding: 14px 20px;
 }
 .sectionHeading,
 .proofHeading {
@@ -868,10 +813,6 @@
   line-height: 1.8;
 }
 @media (max-width: 900px) {
-  .videoForm {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
   .heroGrid {
     gap: 30px;
   }

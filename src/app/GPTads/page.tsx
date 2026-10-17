@@ -288,6 +288,12 @@ export default function GptAdsPage() {
         </Container>
       </section>
 
+      <section className={`${styles.section} ${styles.band}`} id="video">
+        <Container>
+          <LandingVideo />
+        </Container>
+      </section>
+
       <section className={`${styles.section} ${styles.dark}`} id="why-now">
         <Container>
           <p className={styles.eyebrow}>WHY NOW</p>
@@ -320,19 +326,6 @@ export default function GptAdsPage() {
             Advertiser activity changes over time. Starting early does not
             guarantee lower costs, leads or sales.
           </p>
-        </Container>
-      </section>
-
-      <section className={`${styles.section} ${styles.band}`} id="video-form">
-        <Container>
-          <div className={styles.videoFormHeading}>
-            <h2>Check if ChatGPT Ads will work for you</h2>
-            <p>Free assessment · No obligation</p>
-          </div>
-          <div className={styles.videoForm}>
-            <LandingVideo />
-            <GptAdsForm compact />
-          </div>
         </Container>
       </section>
 

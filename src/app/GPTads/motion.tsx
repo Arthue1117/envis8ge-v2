@@ -82,16 +82,16 @@ export function CountUp({ value }: { value: string }) {
 
 /**
  * Mobile-only call to action that slides up once the hero has scrolled
- * away, and hides again while either enquiry form is on screen.
+ * away, and hides again while the enquiry form is on screen.
  */
 export function MobileCta() {
   const [heroVisible, setHeroVisible] = useState(true);
   const [formsVisible, setFormsVisible] = useState(0);
   useEffect(() => {
     const hero = document.getElementById("gptads-hero");
-    const forms = ["video-form", "consultation"]
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
+    const forms = [document.getElementById("consultation")].filter(
+      (el): el is HTMLElement => el !== null
+    );
     if (!hero) return;
     const seen = new Set<Element>();
     const observer = new IntersectionObserver((entries) => {
