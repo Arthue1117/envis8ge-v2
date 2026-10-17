@@ -13,7 +13,7 @@ import { agencyResults } from "./data";
  */
 export function AgencyResults() {
   return (
-    <Section>
+    <Section background="band">
       <FadeIn className="mx-auto max-w-2xl text-center">
         <h2 className="font-heading text-foreground tablet:text-4xl text-3xl font-bold">
           {agencyResults.heading}

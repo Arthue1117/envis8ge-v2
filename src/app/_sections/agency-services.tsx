@@ -24,7 +24,7 @@ export function AgencyServices() {
     <>
       <BrandsWorkedWith />
 
-      <Section background="muted">
+      <Section>
         <h3 className="font-heading text-foreground tablet:text-4xl text-center text-3xl font-bold">
           {agencyServices.label}
         </h3>

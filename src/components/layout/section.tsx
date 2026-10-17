@@ -18,7 +18,7 @@ function Section({
   children,
   ...props
 }: React.ComponentProps<"section"> & {
-  background?: "default" | "muted" | "tint";
+  background?: "default" | "muted" | "tint" | "band" | "blue";
   container?: boolean;
   as?: React.ElementType;
 }) {
@@ -28,6 +28,8 @@ function Section({
         "tablet:py-20 desktop:py-24 py-16",
         background === "muted" && "bg-muted",
         background === "tint" && "bg-tint",
+        background === "band" && "bg-band",
+        background === "blue" && "bg-primary-tint/40",
         background === "default" && "bg-background",
         className
       )}

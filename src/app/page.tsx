@@ -41,8 +41,8 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <Hero />
-      <VideoShowcase />
       <AsSeenOn />
+      <VideoShowcase />
       <AgencyServices />
       <AgencyResults />
       <AgencyTestimonials />

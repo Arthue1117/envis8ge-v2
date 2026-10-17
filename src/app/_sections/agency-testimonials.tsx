@@ -44,7 +44,7 @@ export function AgencyTestimonials() {
   const reducedMotion = usePrefersReducedMotion();
 
   return (
-    <Section background="tint">
+    <Section background="blue">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="font-heading text-foreground tablet:text-4xl text-3xl font-bold">
           {agencyTestimonials.heading}

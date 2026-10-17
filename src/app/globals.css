@@ -39,6 +39,7 @@
   --color-primary-hover: var(--primary-hover);
   --color-primary-text: var(--primary-text);
   --color-tint: var(--tint);
+  --color-band: var(--band);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
@@ -115,6 +116,13 @@
    * of large areas of intense bright cyan.
    */
   --tint: color-mix(in srgb, var(--primary-tint) 12%, white);
+  /*
+   * Light grey section band (2026-10-17) for the homepage's alternating
+   * white / grey / light-blue rhythm. `--muted` (#fafafa) is too close
+   * to white to read as a separate section, so it stays for hover and
+   * box fills only.
+   */
+  --band: #eef1f4;
 
   --secondary: #000000;
   --secondary-foreground: #ffffff;

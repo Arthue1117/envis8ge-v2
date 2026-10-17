@@ -31,6 +31,7 @@ type Status = "idle" | "loading" | "success" | "error";
 
 const inputClass =
   "w-full rounded-sm border border-neutral-300 bg-white px-4 py-3 text-base text-foreground placeholder:text-neutral-400 focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60";
+const compactInputClass = "px-3 py-2 text-sm";
 const labelClass = "text-foreground text-sm font-medium";
 const errorClass = "text-error mt-1 text-xs";
 
@@ -38,8 +39,13 @@ const errorClass = "text-error mt-1 text-xs";
  * Submits directly to /api/contact — a server-side Route Handler that
  * calls Resend (src/app/api/contact/route.ts, src/lib/resend.ts). The
  * GHL embed no longer handles submissions on this site.
+ *
+ * `compact` (homepage, beside the showreel) pairs the name and contact
+ * fields two per row on wider screens, uses smaller inputs and spacing,
+ * and shortens the message box, so the form sits closer to the video's
+ * height. Same fields and payload.
  */
-export function ContactForm() {
+export function ContactForm({ compact = false }: { compact?: boolean }) {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<
     Partial<Record<keyof FormValues, string>>
@@ -107,8 +113,8 @@ export function ContactForm() {
           Message sent
         </h3>
         <p className="text-muted-foreground max-w-sm text-sm">
-          Thanks for reaching out — we&apos;ve received your details and
-          will get back to you soon.
+          Thanks for reaching out — we&apos;ve received your details and will
+          get back to you soon.
         </p>
         <Button
           type="button"
@@ -127,104 +133,111 @@ export function ContactForm() {
         onSubmit={handleSubmit}
         noValidate
         aria-busy={status === "loading"}
-        className="flex flex-col gap-5 rounded-md border border-neutral-200 bg-white p-8"
+        className={cn(
+          "flex flex-col rounded-md border border-neutral-200 bg-white",
+          compact ? "gap-4 p-5" : "gap-5 p-8"
+        )}
       >
-        <div>
-          <label htmlFor="firstName" className={labelClass}>
-            First Name <span aria-hidden>*</span>
-          </label>
-          <input
-            id="firstName"
-            name="firstName"
-            type="text"
-            required
-            placeholder="Your first name"
-            disabled={status === "loading"}
-            value={values.firstName}
-            onChange={(e) => update("firstName", e.target.value)}
-            aria-invalid={!!errors.firstName}
-            aria-describedby={
-              errors.firstName ? "firstName-error" : undefined
-            }
-            className={cn(inputClass, "mt-1.5")}
-          />
-          {errors.firstName && (
-            <p id="firstName-error" className={errorClass}>
-              {errors.firstName}
-            </p>
-          )}
+        <div className={cn(compact && "tablet:grid-cols-2 grid gap-4")}>
+          <div>
+            <label htmlFor="firstName" className={labelClass}>
+              First Name <span aria-hidden>*</span>
+            </label>
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              required
+              placeholder="Your first name"
+              disabled={status === "loading"}
+              value={values.firstName}
+              onChange={(e) => update("firstName", e.target.value)}
+              aria-invalid={!!errors.firstName}
+              aria-describedby={
+                errors.firstName ? "firstName-error" : undefined
+              }
+              className={cn(inputClass, "mt-1.5", compact && compactInputClass)}
+            />
+            {errors.firstName && (
+              <p id="firstName-error" className={errorClass}>
+                {errors.firstName}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="lastName" className={labelClass}>
+              Last Name <span aria-hidden>*</span>
+            </label>
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              required
+              placeholder="Your last name"
+              disabled={status === "loading"}
+              value={values.lastName}
+              onChange={(e) => update("lastName", e.target.value)}
+              aria-invalid={!!errors.lastName}
+              aria-describedby={errors.lastName ? "lastName-error" : undefined}
+              className={cn(inputClass, "mt-1.5", compact && compactInputClass)}
+            />
+            {errors.lastName && (
+              <p id="lastName-error" className={errorClass}>
+                {errors.lastName}
+              </p>
+            )}
+          </div>
         </div>
 
-        <div>
-          <label htmlFor="lastName" className={labelClass}>
-            Last Name <span aria-hidden>*</span>
-          </label>
-          <input
-            id="lastName"
-            name="lastName"
-            type="text"
-            required
-            placeholder="Your last name"
-            disabled={status === "loading"}
-            value={values.lastName}
-            onChange={(e) => update("lastName", e.target.value)}
-            aria-invalid={!!errors.lastName}
-            aria-describedby={errors.lastName ? "lastName-error" : undefined}
-            className={cn(inputClass, "mt-1.5")}
-          />
-          {errors.lastName && (
-            <p id="lastName-error" className={errorClass}>
-              {errors.lastName}
-            </p>
-          )}
-        </div>
+        <div className={cn(compact && "tablet:grid-cols-2 grid gap-4")}>
+          <div>
+            <label htmlFor="phone" className={labelClass}>
+              Phone <span aria-hidden>*</span>
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              required
+              placeholder="Your phone number"
+              disabled={status === "loading"}
+              value={values.phone}
+              onChange={(e) => update("phone", e.target.value)}
+              aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
+              className={cn(inputClass, "mt-1.5", compact && compactInputClass)}
+            />
+            {errors.phone && (
+              <p id="phone-error" className={errorClass}>
+                {errors.phone}
+              </p>
+            )}
+          </div>
 
-        <div>
-          <label htmlFor="phone" className={labelClass}>
-            Phone <span aria-hidden>*</span>
-          </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            required
-            placeholder="Your phone number"
-            disabled={status === "loading"}
-            value={values.phone}
-            onChange={(e) => update("phone", e.target.value)}
-            aria-invalid={!!errors.phone}
-            aria-describedby={errors.phone ? "phone-error" : undefined}
-            className={cn(inputClass, "mt-1.5")}
-          />
-          {errors.phone && (
-            <p id="phone-error" className={errorClass}>
-              {errors.phone}
-            </p>
-          )}
-        </div>
-
-        <div>
-          <label htmlFor="email" className={labelClass}>
-            Email <span aria-hidden>*</span>
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            placeholder="you@company.com"
-            disabled={status === "loading"}
-            value={values.email}
-            onChange={(e) => update("email", e.target.value)}
-            aria-invalid={!!errors.email}
-            aria-describedby={errors.email ? "email-error" : undefined}
-            className={cn(inputClass, "mt-1.5")}
-          />
-          {errors.email && (
-            <p id="email-error" className={errorClass}>
-              {errors.email}
-            </p>
-          )}
+          <div>
+            <label htmlFor="email" className={labelClass}>
+              Email <span aria-hidden>*</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@company.com"
+              disabled={status === "loading"}
+              value={values.email}
+              onChange={(e) => update("email", e.target.value)}
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              className={cn(inputClass, "mt-1.5", compact && compactInputClass)}
+            />
+            {errors.email && (
+              <p id="email-error" className={errorClass}>
+                {errors.email}
+              </p>
+            )}
+          </div>
         </div>
 
         <div>
@@ -237,7 +250,7 @@ export function ContactForm() {
             disabled={status === "loading"}
             value={values.service}
             onChange={(e) => update("service", e.target.value)}
-            className={cn(inputClass, "mt-1.5")}
+            className={cn(inputClass, "mt-1.5", compact && compactInputClass)}
           >
             <option value="">Select a service</option>
             {serviceOptions.map((option) => (
@@ -255,12 +268,16 @@ export function ContactForm() {
           <textarea
             id="message"
             name="message"
-            rows={4}
+            rows={compact ? 3 : 4}
             placeholder="Tell us a bit more about what you need"
             disabled={status === "loading"}
             value={values.message}
             onChange={(e) => update("message", e.target.value)}
-            className={cn(inputClass, "mt-1.5 resize-y")}
+            className={cn(
+              inputClass,
+              "mt-1.5 resize-y",
+              compact && compactInputClass
+            )}
           />
         </div>
 
