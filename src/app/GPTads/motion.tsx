@@ -125,7 +125,7 @@ export function MobileCta() {
 }
 
 /**
- * Envis8ge showreel (same file as the homepage VideoShowcase). Starts
+ * ChatGPT Ads explainer video (public/Video/gptads.mp4). Starts
  * muted and autoplays; the centre play button shows while paused.
  */
 export function LandingVideo() {
@@ -141,7 +141,7 @@ export function LandingVideo() {
     <div className={styles.videoFrame}>
       <video
         ref={ref}
-        src="/Video/envis8ge.mp4#t=0.1"
+        src="/Video/gptads.mp4#t=0.1"
         controls
         autoPlay
         muted
