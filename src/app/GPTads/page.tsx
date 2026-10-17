@@ -19,7 +19,7 @@ import {
 import { Container } from "@/components/layout/container";
 import { GptAdsForm } from "./consultation-form";
 import { GptAdsPixel } from "./pixel";
-import { CountUp, MobileCta, ScrollReveal } from "./motion";
+import { CountUp, LandingVideo, MobileCta, ScrollReveal } from "./motion";
 import styles from "./page.module.css";
 
 const description =
@@ -283,6 +283,19 @@ export default function GptAdsPage() {
               <p className={styles.caption}>
                 Illustrative concept—not a live ad or actual ChatGPT interface.
               </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className={`${styles.section} ${styles.band}`} id="video-form">
+        <Container>
+          <div className={styles.videoForm}>
+            <LandingVideo />
+            <div className={styles.videoFormSide}>
+              <h2>Check if ChatGPT Ads will work for you</h2>
+              <p>Free assessment · No obligation</p>
+              <GptAdsForm compact />
             </div>
           </div>
         </Container>

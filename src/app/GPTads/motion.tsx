@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Play } from "lucide-react";
 import styles from "./page.module.css";
 
 const reducedMotion = () =>
@@ -82,26 +82,34 @@ export function CountUp({ value }: { value: string }) {
 
 /**
  * Mobile-only call to action that slides up once the hero has scrolled
- * away, and hides again while the consultation form is on screen.
+ * away, and hides again while either enquiry form is on screen.
  */
 export function MobileCta() {
   const [heroVisible, setHeroVisible] = useState(true);
-  const [formVisible, setFormVisible] = useState(false);
+  const [formsVisible, setFormsVisible] = useState(0);
   useEffect(() => {
     const hero = document.getElementById("gptads-hero");
-    const form = document.getElementById("consultation");
-    if (!hero || !form) return;
+    const forms = ["video-form", "consultation"]
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (!hero) return;
+    const seen = new Set<Element>();
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
-        if (entry.target === hero) setHeroVisible(entry.isIntersecting);
-        if (entry.target === form) setFormVisible(entry.isIntersecting);
+        if (entry.target === hero) {
+          setHeroVisible(entry.isIntersecting);
+          continue;
+        }
+        if (entry.isIntersecting) seen.add(entry.target);
+        else seen.delete(entry.target);
       }
+      setFormsVisible(seen.size);
     });
     observer.observe(hero);
-    observer.observe(form);
+    forms.forEach((form) => observer.observe(form));
     return () => observer.disconnect();
   }, []);
-  const visible = !heroVisible && !formVisible;
+  const visible = !heroVisible && formsVisible === 0;
   return (
     <a
       href="#consultation"
@@ -113,5 +121,48 @@ export function MobileCta() {
       Check if ChatGPT Ads will work for you
       <ArrowUpRight size={18} aria-hidden />
     </a>
+  );
+}
+
+/**
+ * Envis8ge showreel (same file as the homepage VideoShowcase). Starts
+ * muted and autoplays; the centre play button shows while paused.
+ */
+export function LandingVideo() {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    video.muted = true;
+    video.play().catch(() => {});
+  }, []);
+  return (
+    <div className={styles.videoFrame}>
+      <video
+        ref={ref}
+        src="/Video/envis8ge.mp4#t=0.1"
+        controls
+        autoPlay
+        muted
+        playsInline
+        preload="metadata"
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
+      >
+        Your browser does not support the video tag.
+      </video>
+      {!playing && (
+        <button
+          type="button"
+          aria-label="Play video"
+          className={styles.videoPlay}
+          onClick={() => ref.current?.play()}
+        >
+          <Play size={28} aria-hidden />
+        </button>
+      )}
+    </div>
   );
 }
