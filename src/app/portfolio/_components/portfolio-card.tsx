@@ -42,7 +42,7 @@ export function PortfolioCard({ project }: { project: Project }) {
           <h3 className="font-heading text-foreground text-lg font-semibold">
             {project.clientName}
           </h3>
-          <span className="text-primary mt-1 inline-flex items-center gap-1 text-sm font-semibold">
+          <span className="text-primary-text mt-1 inline-flex items-center gap-1 text-sm font-semibold">
             {viewCaseStudyLabel}
             <ArrowRight
               aria-hidden

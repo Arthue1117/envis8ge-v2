@@ -1,16 +1,16 @@
-import { CONTENT_PENDING, type Project } from "../types";
+import type { Project } from "../types";
 
 // Migrated verbatim from https://envis8ge.com/7th-Mile-Coffee-Shop
-// (captured 2026-08-02) — content and images are Envis8ge's own.
+// (captured 2026-08-02, re-verified against raw source HTML on
+// 2026-08-19) — content and images are Envis8ge's own.
 export const seventhMileCoffeeShop: Project = {
   slug: "7th-mile-coffee-shop",
   clientName: "7th Mile Coffee Shop",
+  pageTitle: "7th Mile Coffee Shop",
   industry: "F&B", // Confirmed — docs/02-brand-guidelines.md Section 5.
   services: null,
   overview:
     "7th Mile Coffee Shop serves delicious Singaporean cuisine in a quaint neighbourhood setting. Their seafood dishes are the highlight of the meal. With their affordable and delicious food, 7th Mile Coffee Shop has a flow of devoted customers and regulars.",
-  challenge: CONTENT_PENDING,
-  strategy: CONTENT_PENDING,
   execution:
     "We help set up an Instagram account and continued engagement on their Facebook Page, managing their social channels for 4 years. Vibrant and good quality images formed the basis of the restaurant's social post strategy. Contests and giveaways were also conducted to encourage increased traffic flow and to reward customers who have dined at 7th Mile Coffee Shop and shared about their experience online.",
   results:

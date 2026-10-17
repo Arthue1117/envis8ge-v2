@@ -67,14 +67,6 @@ export default async function CaseStudyPage({
   const index = projects.findIndex((p) => p.slug === slug);
   const previous = index > 0 ? projects[index - 1] : null;
   const next = index < projects.length - 1 ? projects[index + 1] : null;
-  const related = projects
-    .filter((p) => p.slug !== slug)
-    .filter((p) => (project.industry ? p.industry === project.industry : true))
-    .slice(0, 3);
-  const relatedFallback =
-    related.length > 0
-      ? related
-      : projects.filter((p) => p.slug !== slug).slice(0, 3);
 
   const url = `${siteConfig.url}/portfolio/${project.slug}`;
   const ogImage = `${siteConfig.url}${project.heroImage ?? placeholderImageFor(project.slug)}`;
@@ -100,7 +92,7 @@ export default async function CaseStudyPage({
       name: siteConfig.legalName,
       logo: {
         "@type": "ImageObject",
-        url: `${siteConfig.url}/images/logo/envis8ge-logo.png`,
+        url: `${siteConfig.url}/images/logo/envis8ge-logo-new.png`,
       },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
@@ -134,12 +126,7 @@ export default async function CaseStudyPage({
       />
 
       <CaseStudyHero project={project} />
-      <CaseStudyLayout
-        project={project}
-        previous={previous}
-        next={next}
-        related={relatedFallback}
-      />
+      <CaseStudyLayout project={project} previous={previous} next={next} />
     </>
   );
 }

@@ -1,11 +1,6 @@
-"use client";
-
-import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import { useRef } from "react";
-
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { FadeIn } from "@/components/motion/fade-in";
+import { ParallaxImage } from "@/components/motion/parallax-image";
 
 import { placeholderImageFor } from "../_data/placeholder-image";
 import type { Project } from "../_data/types";
@@ -19,27 +14,14 @@ import type { Project } from "../_data/types";
  * their source page migration.
  */
 export function CaseStudyHero({ project }: { project: Project }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-
   return (
-    <section
-      ref={ref}
-      className="tablet:h-[420px] desktop:h-[460px] relative flex h-[300px] items-end overflow-hidden bg-black"
-    >
-      <motion.div style={{ y }} className="absolute inset-0">
-        <Image
-          src={project.heroImage ?? placeholderImageFor(project.slug)}
-          alt=""
-          fill
-          priority
-          className="object-cover"
-        />
-      </motion.div>
+    <section className="tablet:h-[420px] desktop:h-[460px] relative flex h-[300px] items-end overflow-hidden bg-black">
+      <ParallaxImage
+        src={project.heroImage ?? placeholderImageFor(project.slug)}
+        alt=""
+        priority
+        className="object-cover"
+      />
 
       <div className="absolute inset-0 bg-black/55" />
       <div
@@ -62,7 +44,7 @@ export function CaseStudyHero({ project }: { project: Project }) {
           />
           <div className="mt-3 flex flex-wrap items-center gap-2">
             {project.industry && (
-              <span className="bg-primary/90 rounded-pill px-3 py-1 text-xs font-semibold text-white">
+              <span className="bg-primary/90 text-foreground rounded-pill px-3 py-1 text-xs font-semibold">
                 {project.industry}
               </span>
             )}

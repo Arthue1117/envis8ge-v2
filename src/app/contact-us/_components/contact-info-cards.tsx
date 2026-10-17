@@ -39,7 +39,7 @@ export function ContactInfoCards() {
         const Icon = card.icon;
         const content = (
           <Card className="h-full p-6 transition-[transform,box-shadow] duration-250 hover:-translate-y-1 hover:shadow-lg">
-            <div className="bg-primary-tint text-primary rounded-pill inline-flex size-12 items-center justify-center">
+            <div className="bg-primary-tint text-foreground rounded-pill inline-flex size-12 items-center justify-center">
               <Icon aria-hidden className="size-5" />
             </div>
             <h3 className="font-heading text-foreground mt-4 text-sm font-semibold tracking-wide uppercase">

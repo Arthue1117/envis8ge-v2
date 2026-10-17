@@ -6,42 +6,50 @@
  *
  * `industry` and `services` are only populated where confirmed
  * (docs/02-brand-guidelines.md Section 5's confirmed client groupings);
- * otherwise `null`, never guessed. `overview`/`challenge`/`strategy`/
- * `execution`/`results` are real content gaps — docs/05-content-plan.md
- * Section 4 flags this as the single largest gap in the project — so
- * every project starts with an explicit placeholder string rather than
- * an invented case study narrative or fabricated results, and is filled
- * in per-field only where the client's own case study page (envis8ge.com)
- * has real, directly corresponding copy — fields with no matching source
- * content stay CONTENT_PENDING rather than being invented to fill the
- * template's shape.
+ * otherwise `null`, never guessed.
+ *
+ * `overview`/`execution`/`results` map to the three sections every
+ * source case-study page on envis8ge.com actually has: an unlabeled
+ * intro paragraph, "Our Work", and "Our Results" — confirmed identical
+ * across all 31 source pages (same GHL page template). There is no
+ * separate "Challenge"/"Strategy" heading on any source page, so those
+ * fields were removed rather than kept as permanently-empty
+ * `CONTENT_PENDING` slots forcing content into a template shape the
+ * source doesn't use. `execution`/`results` are real content gaps only
+ * where a source page genuinely lacks that section (e.g. ARC has no
+ * "Our Results") — `CONTENT_PENDING` is reserved for that, never for
+ * content that exists on the source but wasn't migrated yet.
  *
  * `heroImage`/`galleryImages` are real photos migrated from that same
  * source page (public/images/portfolio/<slug>/) — omitted (falls back to
  * the generic placeholder graphic) when no source page has been migrated
- * yet. `testimonial` is a real, attributed client quote where the source
- * page has one; otherwise omitted, never invented.
+ * yet.
+ *
+ * `pageTitle` is the exact page title from the source page (its literal
+ * H1, e.g. "VivoCity Singapore" or "VSTECS Singapore") — used as the
+ * heading for the intro/overview section in `CaseStudyLayout` instead of
+ * a generic "Overview" label. This is intentionally separate from
+ * `clientName`, which is the shorter name used everywhere else in this
+ * site's own design (cards, hero `<h1>`, breadcrumbs, related-case-study
+ * links) — the two often differ (e.g. clientName "VSTECS" vs pageTitle
+ * "VSTECS Singapore") because the source page's title and this site's
+ * short display name aren't always the same string.
+ *
+ * No testimonial field: client quotes are intentionally not displayed
+ * on case-study pages, per explicit request.
  */
-export interface Testimonial {
-  quote: string;
-  name: string;
-  title: string;
-}
-
 export interface Project {
   slug: string;
   clientName: string;
+  pageTitle: string;
   industry: string | null;
   services: string[] | null;
   overview: string;
-  challenge: string;
-  strategy: string;
   execution: string;
   results: string;
   hasRealContent: boolean;
   heroImage?: string;
   galleryImages?: string[];
-  testimonial?: Testimonial;
 }
 
 export const CONTENT_PENDING =

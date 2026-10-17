@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { Cta } from "@/app/_sections/cta";
 
-import { caseStudiesHeading } from "./_data/copy";
 import { projects } from "./_data/projects";
 import { BrandMarquee } from "./_components/brand-marquee";
 import { PortfolioHero } from "./_components/portfolio-hero";
@@ -76,12 +75,7 @@ export default function PortfolioIndexPage() {
 
       <section className="tablet:py-20 desktop:py-24 py-16">
         <div className="tablet:px-6 mx-auto w-full max-w-[1200px] px-4">
-          <h2 className="font-heading text-foreground tablet:text-4xl text-center text-3xl font-bold">
-            {caseStudiesHeading}
-          </h2>
-          <div className="mt-10">
-            <PortfolioListing projects={projects} />
-          </div>
+          <PortfolioListing projects={projects} />
         </div>
       </section>
 

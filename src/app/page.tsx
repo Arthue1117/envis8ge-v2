@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
 
+import { AgencyResults } from "./_sections/agency-results";
+import { AgencyServices } from "./_sections/agency-services";
+import { AgencyTestimonials } from "./_sections/agency-testimonials";
 import { AsSeenOn } from "./_sections/as-seen-on";
 import { Cta } from "./_sections/cta";
 import { Hero } from "./_sections/hero";
-import { PortfolioPreview } from "./_sections/portfolio-preview";
-import { Process } from "./_sections/process";
-import { Services } from "./_sections/services";
-import { Testimonials } from "./_sections/testimonials";
+import { VideoShowcase } from "./_sections/video-showcase";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -41,11 +41,11 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <Hero />
+      <VideoShowcase />
       <AsSeenOn />
-      <Services />
-      <PortfolioPreview />
-      <Process />
-      <Testimonials />
+      <AgencyServices />
+      <AgencyResults />
+      <AgencyTestimonials />
       <Cta />
     </>
   );

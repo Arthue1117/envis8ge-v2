@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { FadeIn } from "@/components/motion/fade-in";
+import { ParallaxImage } from "@/components/motion/parallax-image";
 import { buttonVariants } from "@/components/ui/button";
 
 import { hero } from "./data";
@@ -22,19 +22,18 @@ import { hero } from "./data";
 export function Hero() {
   return (
     <section className="tablet:py-28 desktop:py-32 relative overflow-hidden bg-black py-24">
-      <Image
+      <ParallaxImage
         src="/images/backgrounds/hero-skyline.webp"
         alt=""
-        fill
         priority
         className="object-cover opacity-50"
       />
       <div className="tablet:px-6 relative mx-auto w-full max-w-[1200px] px-4">
-        <FadeIn className="mx-auto max-w-3xl text-center">
-          <h1 className="font-heading tablet:text-5xl desktop:text-6xl text-4xl font-bold text-white">
+        <FadeIn className="text-center">
+          <h1 className="font-heading tablet:text-6xl desktop:text-7xl desktop:max-w-[1200px] mx-auto max-w-3xl text-5xl font-bold text-white">
             {hero.heading}
           </h1>
-          <p className="tablet:text-lg mt-6 text-base text-white/90">
+          <p className="tablet:text-lg mx-auto mt-6 max-w-3xl text-base text-white/90">
             {hero.body}
           </p>
           <div className="mt-8 flex justify-center">

@@ -10,7 +10,5 @@ export const portfolioHero = {
 
 export const brandMarqueeHeading = "Brands we've worked with";
 
-export const caseStudiesHeading = "Case Studies & Featured Projects";
-
 /** Live site's identical CTA on every project card — reused verbatim. */
 export const viewCaseStudyLabel = "View Case Study";

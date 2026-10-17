@@ -22,12 +22,20 @@ import { asSeenOn } from "./data";
  * `fill` requires — nesting it inside Section's auto-Container (which is
  * not itself positioned) triggered a dev-mode warning and incorrect
  * sizing.
+ *
+ * Padding reduced below the shared `Section` default
+ * (`tablet:py-20 desktop:py-24 py-16`) and heading bumped up to match
+ * the standard section-heading scale used elsewhere on the homepage
+ * (`tablet:text-4xl text-3xl`, e.g. Agency Results/Testimonials) per
+ * correction — tightens the gap above/below this section and makes the
+ * heading read more clearly. The composite logo image itself is
+ * untouched.
  */
 export function AsSeenOn() {
   return (
     <Section
       container={false}
-      className="tablet:py-16 relative overflow-hidden py-12"
+      className="tablet:py-10 desktop:py-12 relative overflow-hidden py-8"
     >
       <Image
         src="/images/backgrounds/pattern-dots.png"
@@ -37,8 +45,8 @@ export function AsSeenOn() {
       />
       <Container className="relative">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-foreground tablet:text-3xl text-2xl font-bold">
-            As <strong className="text-primary">Seen</strong> On
+          <h2 className="font-heading text-foreground tablet:text-4xl text-3xl font-bold">
+            As <strong className="text-primary-text">Seen</strong> On
           </h2>
           <Image
             src={asSeenOn.image}
