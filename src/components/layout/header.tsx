@@ -7,7 +7,7 @@ import { Container } from "@/components/layout/container";
 import { Logo } from "@/components/layout/logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { buttonVariants } from "@/components/ui/button";
-import { primaryNav } from "@/config/nav";
+import { headerNav } from "@/config/nav";
 import { useScrolled } from "@/hooks/use-scrolled";
 import { cn } from "@/lib/utils";
 
@@ -32,7 +32,7 @@ export function Header() {
 
         <nav aria-label="Primary" className="desktop:block hidden">
           <ul className="flex items-center gap-8">
-            {primaryNav.map((item) => {
+            {headerNav.map((item) => {
               const active = pathname === item.href;
               return (
                 <li key={item.href}>

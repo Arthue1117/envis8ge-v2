@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { buttonVariants } from "@/components/ui/button";
-import { primaryNav } from "@/config/nav";
+import { headerNav } from "@/config/nav";
 import { cn } from "@/lib/utils";
 
 /**
@@ -59,7 +59,7 @@ export function MobileNav() {
 
           <nav aria-label="Primary">
             <ul className="flex flex-col gap-6">
-              {primaryNav.map((item) => {
+              {headerNav.map((item) => {
                 const active = pathname === item.href;
                 return (
                   <li key={item.href}>

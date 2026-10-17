@@ -8,3 +8,12 @@ export const primaryNav = [
   { label: "Blog", href: "/blog" },
   { label: "Contact Us", href: "/contact-us" },
 ] as const;
+
+/**
+ * Header and mobile-menu links. "Contact Us" is left out there because
+ * both already show the blue "Contact Us!" button (2026-10-17); the
+ * footer still lists it from `primaryNav`.
+ */
+export const headerNav = primaryNav.filter(
+  (item) => item.href !== "/contact-us"
+);
