@@ -76,6 +76,7 @@ export interface Article {
   keyTakeaways: string[];
   body: ContentBlock[];
   faq: FaqItem[];
-  verdict: { paragraphs: string[]; pullQuote: string };
+  /** `heading` overrides the closing section's default "Verdict" title. */
+  verdict: { heading?: string; paragraphs: string[]; pullQuote: string };
   cta: { heading: string; body: string; buttonText: string; href: string };
 }

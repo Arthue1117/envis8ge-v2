@@ -257,14 +257,16 @@ export default async function BlogArticlePage({
 
             <div id="verdict" className="flex scroll-mt-24 flex-col gap-4">
               <h2 className="font-heading text-foreground tablet:text-3xl text-2xl font-bold">
-                Verdict
+                {article.verdict.heading ?? "Verdict"}
               </h2>
               {article.verdict.paragraphs.map((paragraph, i) => (
                 <p key={i} className="text-foreground leading-relaxed">
                   {paragraph}
                 </p>
               ))}
-              <PullQuote quote={article.verdict.pullQuote} />
+              {article.verdict.pullQuote && (
+                <PullQuote quote={article.verdict.pullQuote} />
+              )}
             </div>
 
             <ArticleCta

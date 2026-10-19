@@ -912,8 +912,204 @@ export const howToChooseAgencyArticle: Article = {
   },
 };
 
+/**
+ * Article 4 — transcribed verbatim from the client-supplied copy
+ * (title, URL slug, SEO title, meta description, introduction, key
+ * takeaways, body, FAQ, closing section and call to action). No wording
+ * has been altered.
+ *
+ * Template fields the supplied copy does not cover are filled without
+ * new copy: `subtitle`, `keywords` and the closing `pullQuote` are left
+ * empty (an empty pull quote is not rendered), and `listingExcerpt`
+ * reuses the supplied meta description. The closing section keeps its
+ * supplied heading ("The practical decision") via `verdict.heading`.
+ * The CTA button label is the supplied "Contact Us" internal link; the
+ * supplied internal-links list is implementation guidance and is not
+ * printed.
+ */
+export const socialMediaManagementCostArticle: Article = {
+  slug: "social-media-management-cost-singapore",
+  title:
+    "Social Media Management Cost in Singapore: What Are You Actually Paying For?",
+  seoTitle: "Social Media Management Cost in Singapore A Scope Guide",
+  subtitle: "",
+  listingExcerpt:
+    "Understand what changes the cost of social media management in Singapore, which items are usually separate, and how to compare agency proposals fairly.",
+  description:
+    "Understand what changes the cost of social media management in Singapore, which items are usually separate, and how to compare agency proposals fairly.",
+  category: "Social Media Marketing",
+  categorySlug: "social-media-marketing",
+  author: "Envis8ge",
+  authorBio:
+    "Boutique social media and digital marketing agency serving Singapore and APAC brands since 2013. Known for a fuss-free, transparent approach and a holistic, data-driven social media strategy across content, community, and paid media.",
+  keywords: [],
+  featuredImage: "/images/blog/social-media-management-cost-singapore/hero.png",
+  publishAt: "2026-10-06T09:00:00+08:00",
+  lastUpdated: null,
+  socialShare: ["LinkedIn", "Facebook", "WhatsApp", "X", "Copy Link"],
+  tableOfContents: [
+    {
+      id: "what-social-media-management-usually-includes",
+      label: "What social media management usually includes",
+    },
+    {
+      id: "six-variables-that-change-the-cost",
+      label: "The six variables that change the cost",
+    },
+    {
+      id: "separate-the-four-parts-of-the-budget",
+      label: "Separate the four parts of the budget",
+    },
+    {
+      id: "how-to-compare-proposals-fairly",
+      label: "How to compare proposals fairly",
+    },
+    {
+      id: "questions-to-ask-before-signing",
+      label: "Questions to ask before signing",
+    },
+    { id: "frequently-asked-questions", label: "Frequently asked questions" },
+    { id: "verdict", label: "The practical decision" },
+  ],
+  introduction: [
+    "Social media management costs in Singapore depend less on the number of posts than on the work needed to plan, produce, distribute, manage and measure them. Two proposals can both promise twelve posts a month while covering very different levels of strategy, original production, community response and paid-media support.",
+    "The fairest way to compare costs is to compare scope. Before looking at the total fee, establish what the agency will do, what your team must provide, which costs sit outside the retainer and how success will be evaluated.",
+  ],
+  keyTakeaways: [
+    "Post count is only one part of the workload.",
+    "Original photography, video, creators and paid media usually have separate cost drivers.",
+    "A cheaper proposal may be appropriate if your team already supplies strategy, assets and approvals.",
+    "A more expensive proposal is not automatically better; it should include useful capability, capacity or accountability.",
+    "The best comparison uses the same brief and the same expected outcomes for every supplier.",
+  ],
+  body: [
+    {
+      type: "heading",
+      id: "what-social-media-management-usually-includes",
+      text: "What social media management usually includes",
+    },
+    {
+      type: "paragraph",
+      text: "A basic scope may cover a monthly calendar, copywriting, simple designs, scheduling and a short performance report. A more complete programme can add audience research, campaign planning, original shoots, short-form video, creator coordination, community management, paid-media management, landing pages and monthly optimisation.",
+    },
+    {
+      type: "paragraph",
+      text: "That distinction matters. A team adapting assets supplied by the client is doing different work from a team planning concepts, arranging a shoot, editing multiple formats and managing comments every day. Neither model is inherently wrong. The problem begins when the proposal does not explain which model it is pricing.",
+    },
+
+    {
+      type: "heading",
+      id: "six-variables-that-change-the-cost",
+      text: "The six variables that change the cost",
+    },
+    {
+      type: "paragraph",
+      text: "First, platform count affects planning and adaptation. Publishing the same asset everywhere is quick, but it rarely uses each platform well. LinkedIn, TikTok, Instagram and Facebook can require different formats, copy and approval decisions.",
+    },
+    {
+      type: "paragraph",
+      text: "Second, content production affects both labour and external costs. Static graphics based on an established template cost less to produce than original photography, motion graphics or a day of video production.",
+    },
+    {
+      type: "paragraph",
+      text: "Third, posting frequency increases the number of ideas, approvals, assets and performance decisions required each month. More posts only help when the quality and purpose remain clear.",
+    },
+    {
+      type: "paragraph",
+      text: "Fourth, community management changes the operating model. Monitoring comments and messages during business hours is different from providing extended coverage, response scripts and escalation support.",
+    },
+    {
+      type: "paragraph",
+      text: "Fifth, paid media adds campaign setup, audience planning, tracking, creative testing and budget monitoring. The media budget paid to the platform should be shown separately from the agency fee.",
+    },
+    {
+      type: "paragraph",
+      text: "Sixth, approval complexity affects turnaround. A regional brand with legal, product and market reviews will need more coordination than an owner-managed business with one approver.",
+    },
+
+    {
+      type: "heading",
+      id: "separate-the-four-parts-of-the-budget",
+      text: "Separate the four parts of the budget",
+    },
+    {
+      type: "paragraph",
+      text: "Ask every supplier to separate agency services, media spend, production costs and creator or talent fees. This makes proposals easier to compare and prevents the ad budget from being mistaken for agency revenue.",
+    },
+    {
+      type: "paragraph",
+      text: "Agency services pay for the team's time and expertise. Media spend goes to platforms such as Meta or TikTok. Production covers photographers, videographers, studios, locations, props and editing beyond the agreed scope. Creator fees may include creation, posting, usage rights, exclusivity and paid amplification.",
+    },
+
+    {
+      type: "heading",
+      id: "how-to-compare-proposals-fairly",
+      text: "How to compare proposals fairly",
+    },
+    {
+      type: "paragraph",
+      text: "Give each shortlisted agency the same brief. Ask them to show deliverables, assumptions, exclusions, turnaround times, revision limits, reporting, account ownership and termination terms. Then ask which business outcome the proposed scope is designed to support.",
+    },
+    {
+      type: "paragraph",
+      text: "A proposal built around reach should not be judged by the same scorecard as a lead-generation programme. Likewise, an organic-only retainer should not be expected to deliver the reach of a paid campaign.",
+    },
+
+    {
+      type: "heading",
+      id: "questions-to-ask-before-signing",
+      text: "Questions to ask before signing",
+    },
+    {
+      type: "list",
+      ordered: false,
+      items: [
+        "Who develops the strategy and who produces the work?",
+        "Are original shoots, stock assets and creator fees included?",
+        "How quickly are comments and messages reviewed?",
+        "Is paid-media management included, and is media spend separate?",
+        "Who owns the ad accounts, source files and audience data?",
+        "How many revision rounds are included?",
+        "What will the monthly report help us decide?",
+        "What does the agency need from our team to meet the timeline?",
+      ],
+    },
+  ],
+  faq: [
+    {
+      question: "Should we choose the proposal with the most posts?",
+      answer:
+        "Not automatically. A smaller number of useful, well-produced posts can be more valuable than a larger volume of repetitive content. Compare the purpose and production standard, not only the quantity.",
+    },
+    {
+      question: "Is ad spend included in a social media retainer?",
+      answer:
+        "It should be stated clearly. In most arrangements, media spend is paid separately to the platform. Confirm who controls the account and payment method.",
+    },
+    {
+      question: "Can a small business start with a limited scope?",
+      answer:
+        "Yes. A focused programme on one or two relevant platforms is often easier to manage and evaluate than a thin presence across every channel.",
+    },
+  ],
+  verdict: {
+    heading: "The practical decision",
+    paragraphs: [
+      "The right cost is the amount required to deliver a clear scope at a standard your brand can sustain. If a proposal looks unusually cheap, identify what your internal team must supply. If it looks expensive, ask which capability, production requirement or service level explains the difference.",
+    ],
+    pullQuote: "",
+  },
+  cta: {
+    heading: "Comparing social media proposals?",
+    body: "Send Envis8ge the scope you are reviewing. We can help you identify what is included, what is missing and what your brand actually needs.",
+    buttonText: "Contact Us",
+    href: "https://envis8ge.com/contact-us",
+  },
+};
+
 export const articles = [
   organicVsPaidArticle,
   socialMediaContentArticle,
   howToChooseAgencyArticle,
+  socialMediaManagementCostArticle,
 ];
